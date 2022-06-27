@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('self_info');
             $table->integer('sex');
             $table->integer('area');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('twitter');
             $table->integer('genre');
             $table->timestamps();
