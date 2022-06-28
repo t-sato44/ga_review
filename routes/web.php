@@ -28,7 +28,12 @@ Route::middleware([
     })->name('dashboard');
 });
 
-/* 評価ページの表示　*/
-Route::get('/review','App\Http\Controllers\ReviewController@index');
+Route::get('/review/test', function () {
+    return view('review.test');
+});
 
-Route::post('games/{game}/review', 'App\Http\Controllers\ReviewController@store');
+/* 評価ページの表示　*/
+Route::resource('review', ReviewController::class);
+
+
+// Route::post('games/{game}/review', 'App\Http\Controllers\ReviewController@store');

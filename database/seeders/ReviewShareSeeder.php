@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\MypageGenre;
+use App\Models\ReviewShare;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MypageGenreSeeder extends Seeder
+class ReviewShareSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class MypageGenreSeeder extends Seeder
      */
     public function run()
     {
-        MypageGenre::create([
-            'mypage_id' => 1,
-            'genre_id' => 1,
+        ReviewShare::create([
+            'review_id' => 1,
+            'user_id' => 1,
         ]);
     }
 }

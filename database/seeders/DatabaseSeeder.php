@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UserSeeder::class);
         $this->call(GenreSeeder::class);
         $this->call(GameSeeder::class);
         $this->call(GenreSeeder::class);
@@ -21,6 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(ReviewLikeSeeder::class);
         $this->call(MypageGenreSeeder::class);
+        $this->call(GameHaveSeeder::class);
+        $this->call(GameLikeSeeder::class);
+        $this->call(DeviceSeeder::class);
+        $this->call(DeviceGameSeeder::class);
+        $this->call(ReviewShareSeeder::class);
+        $this->call(ImageSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 

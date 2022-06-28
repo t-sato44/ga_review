@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\MypageGenre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\DeviceGame;
 
-class MypageGenreSeeder extends Seeder
+class DeviceGameSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,10 @@ class MypageGenreSeeder extends Seeder
      */
     public function run()
     {
-        MypageGenre::create([
-            'mypage_id' => 1,
-            'genre_id' => 1,
+        DeviceGame::create([
+            'device_id' => 1,
+            'game_id' => 1,
         ]);
+
     }
 }

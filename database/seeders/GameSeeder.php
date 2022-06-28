@@ -24,7 +24,7 @@ class GameSeeder extends Seeder
             'agency' => 'ddd',
             'is_new' => 0,
             'is_attention' => 1,
-            'is_recommend' => 0, 
+            'is_recommend' => 0,
         ]);
 
         Game::create([
@@ -36,7 +36,7 @@ class GameSeeder extends Seeder
             'agency' => 'ddd',
             'is_new' => 0,
             'is_attention' => 0,
-            'is_recommend' => 1, 
+            'is_recommend' => 1,
         ]);
 
         Game::create([
@@ -48,7 +48,7 @@ class GameSeeder extends Seeder
             'agency' => 'ddd',
             'is_new' => 0,
             'is_attention' => 1,
-            'is_recommend' => 0, 
+            'is_recommend' => 0,
         ]);
 
     }

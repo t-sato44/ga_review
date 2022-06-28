@@ -16,15 +16,15 @@ class GenreSeeder extends Seeder
     public function run()
     {
         Genre::create([
-            'name' => 'RPG', 
+            'name' => 'RPG',
         ]);
 
         Genre::create([
-            'name' => 'MMO、シューティング', 
+            'name' => 'MMO、シューティング',
         ]);
 
         Genre::create([
-            'name' => 'シューティング', 
+            'name' => 'シューティング',
         ]);
 
 

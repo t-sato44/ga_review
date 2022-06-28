@@ -24,7 +24,7 @@ class ReviewSeeder extends Seeder
             'volume' => 1,
             'sound' => 1,
             'story' => 1,
-            'comfort' => 1, 
+            'comfort' => 1,
         ]);
         Review::create([
             'game_id' => 2,
@@ -35,7 +35,7 @@ class ReviewSeeder extends Seeder
             'volume' => 1,
             'sound' => 3,
             'story' => 3,
-            'comfort' => 1, 
+            'comfort' => 1,
         ]);
         Review::create([
             'game_id' => 3,
@@ -46,7 +46,7 @@ class ReviewSeeder extends Seeder
             'volume' => 1,
             'sound' => 3,
             'story' => 2,
-            'comfort' => 1, 
+            'comfort' => 1,
         ]);
     }
 }
