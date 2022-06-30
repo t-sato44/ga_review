@@ -19,9 +19,9 @@ class ReviewController extends Controller
 	{
 		// この２つの$reviewsと$reviews2はほぼ同じことを行っている
 		$reviews = Review::all();
-		$reviews2 = DB::table('reviews')->get();
-		// dd($reviews2);
-		return view('review.index', compact('reviews', 'reviews2'));
+		// $reviews2 = DB::table('reviews')->get();
+		// dd($reviews);
+		return view('review.index', compact('reviews'));
 	}
 
 	/**
