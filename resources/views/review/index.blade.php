@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>レビュー一覧</h1>
+<h1 class="text-primary">レビュー一覧</h1>
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach ($reviews as $review)
