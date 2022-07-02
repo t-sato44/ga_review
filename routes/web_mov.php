@@ -17,7 +17,6 @@ use App\Http\Controllers\ReviewController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/test', function () {
     return view('test');
 });
@@ -38,5 +37,6 @@ Route::get('/review/test', function () {
 
 /* 評価ページの表示　*/
 Route::resource('review', ReviewController::class);
+
 
 // Route::post('games/{game}/review', 'App\Http\Controllers\ReviewController@store');
