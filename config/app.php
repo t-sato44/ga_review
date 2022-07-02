@@ -15,7 +15,12 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name'        => env('APP_NAME', 'Laravel'),
+    'description' => env('APP_DESCRIPTION', 'ゲームレビューサイト'),
+    'copyright'   => env('APP_COPYRIGHT', 'Game Review.'),
+    'zip'         => env('APP_ZIP', '〒100-1234'),
+    'address1'    => env('APP_ADDRESS1', '東京都新宿区1-1-1'),
+    'address2'    => env('APP_ADDRESS2', 'テストビル2階'),
 
     /*
     |--------------------------------------------------------------------------
