@@ -1,88 +1,103 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('layouts/layout')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('content')
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 offset-md-4">
 
-            <div>
-                <x-jet-label for="name" value="{{ __('名前') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+			<div class="logo-register text-center mb-4">
+				<a href="/" class="d-inline-block">
+					<img src="{{ asset('img/logo_256x256.png') }}" alt="ロゴ">
+				</a>
+			</div>
 
-            <div>
-                <x-jet-label for="name_kana" value="{{ __('フリガナ') }}" />
-                <x-jet-input id="name_kana" class="block mt-1 w-full" type="text" name="name_kana" :value="old('name_kana')" required autofocus autocomplete="name" />
-            </div>
+			@if ($errors->any())
+				<div class="text-danger">{{ __('Whoops! Something went wrong.') }}</div>
+					<ul class="mt-3 text-danger">
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('メールアドレス') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+			<form method="POST" action="{{ route('register') }}">
+				@csrf
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('パスワード') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+				<div class="mb-4">
+					<label for="name" class="form-label"><strong>{{ __('名前') }}</strong></label>
+					<input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
+				</div>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('パスワードの確認') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+				<div class="mb-4">
+					<label for="name_kana" class="form-label"><strong>{{ __('フリガナ') }}</strong></label>
+					<input id="name_kana" class="form-control" type="text" name="name_kana" :value="old('name_kana')" required autofocus autocomplete="name_kana">
+				</div>
 
-            <div class="mt-4">
-                <x-jet-label for="birth_date" value="{{ __('誕生日') }}" />
-                <x-jet-input id="birth_date" class="block mt-1 w-full" type="date" name="birth_date" :value="old('birth_date')" required />
-            </div>
+				<div class="mb-4">
+					<label for="email" class="form-label"><strong>{{ __('メールアドレス') }}</strong></label>
+					<input id="email" class="form-control" type="text" name="email" :value="old('email')" required autofocus autocomplete="email">
+				</div>
 
-            <div class="mt-4">
-                <x-jet-label for="nickname" value="{{ __('レビューネーム') }}" />
-                <x-jet-input id="nickname" class="block mt-1 w-full" type="text" name="nickname" :value="old('nickname')" required />
-            </div>
+				<div class="mb-4">
+					<label for="password" class="form-label"><strong>{{ __('パスワード') }}</strong></label>
+					<input id="password" class="form-control" type="text" name="password" :value="old('password')" required autofocus autocomplete="password">
+				</div>
 
-            <!-- level -->
-            <div>
-                <x-jet-label for="level" value="{{__('ゲームレベル') }}" />
+				<div class="mb-4">
+					<label for="password_confirmation" class="form-label"><strong>{{ __('パスワードの確認') }}</strong></label>
+					<input id="password_confirmation" class="form-control" type="text" name="password_confirmation" :value="old('password_confirmation')" required autofocus autocomplete="new-password">
+				</div>
 
-                <div class="form-group row">
-               @for($i=1;$i <= 3;$i++)
-                  <div class="form-check form-check-inline">
-                     <input class="form-check-input" type="radio" id="graphic-{{ $i }}" name="level" value="{{ $i }}">
-                     <label class="form-check-label" for="inlineRadio01">レベル{{ $i }}</label>
-                  </div>
-               @endfor
-            </div>
+				<div class="mb-4">
+					<label for="birth_date" class="form-label"><strong>{{ __('誕生日') }}</strong></label>
+					<input id="birth_date" class="form-control" type="text" name="birth_date" :value="old('birth_date')" required>
+				</div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
+				<div class="mb-4">
+					<label for="nickname" class="form-label"><strong>{{ __('レビューネーム') }}</strong></label>
+					<input id="nickname" class="form-control" type="text" name="nickname" :value="old('nickname')" required>
+				</div>
 
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-jet-label>
-                </div>
-            @endif
+				<!-- level -->
+				<div class="mb-4">
+					<label for="level" class="form-label"><strong>{{ __('ゲームレベル') }}</strong></label>
+					@for ($i = 1; $i <= 3; $i++)
+						<div class="form-check">
+							<input class="form-check-input" type="radio" id="level_{{ $i }}" name="level" value="{{ $i }}">
+							<label class="form-check-label" for="level_{{ $i }}">レベル{{ $i }}</label>
+						</div>
+					@endfor
+				</div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('ご登録済みの方はこちら') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('新規登録') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+			
+					@if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+						<div class="mt-4">
+							<label for="terms">
+								<div class="d-flex align-items-center">
+									<input type="checkbox" name="terms" id="terms" class="form-control">
+									<div class="ml-2">
+										{!! __('I agree to the :terms_of_service and :privacy_policy', [
+			'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="">' . __('Terms of Service') . '</a>',
+			'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="">' . __('Privacy Policy') . '</a>',
+			]) !!}
+									</div>
+								</div>
+							</label>
+						</div>
+					@endif
+			
+					<div class="d-flex align-items-center justify-content-end mt-4">
+						<a class="" href="{{ route('login') }}">
+							{{ __('ご登録済みの方はこちら') }}
+						</a>
+						<button class="btn btn-primary ms-4" type="submit">
+							{{ __('新規登録') }}
+						</button>
+					</div>
+			</form>
+		</div>{{-- /.col --}}
+	</div>{{-- /.row --}}
+</div>{{-- /.container --}}
+@endsection

@@ -13,7 +13,9 @@
     <title>{{ config('app.name') }}</title>
   @endif
   <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('img/favicon-16x16.png') }}">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <script src="{{ mix('js/app.js') }}" defer></script>
   @hasSection('title')
     <meta property="og:title" content="@yield('title') | {{ config('app.name') }}" />
   @else

@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'name' => '石原さとみ',
             'name_kana' => 'イシハラサトミ',
             'email' => 'ishihara@mail.com',
-            'password' => '00000000',
+            'password' => bcrypt('00000000'),
             'birth_date' => '1990-10-12',
             'nickname' => 'サトミン',
             'level' => 15,
