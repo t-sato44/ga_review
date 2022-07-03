@@ -2,24 +2,24 @@
 
 @section('content')
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 offset-md-4">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
 
-        <div class="logo-register text-center mb-4">
-          <a href="/" class="d-inline-block">
-            <img src="{{ asset('img/logo_256x256.png') }}" alt="ロゴ">
-          </a>
-        </div>
+      <div class="logo-register text-center mb-4">
+        <a href="/" class="d-inline-block">
+          <img src="{{ asset('img/logo_256x256.png') }}" alt="ロゴ">
+        </a>
+      </div>
 
-        @if ($errors->any())
-          <div class="text-danger">{{ __('Whoops! Something went wrong.') }}</div>
+      @if ($errors->any())
+        <div class="text-danger">{{ __('Whoops! Something went wrong.') }}</div>
           <ul class="mt-3 text-danger">
             @foreach ($errors->all() as $error)
               <li>{{ $error }}</li>
             @endforeach
           </ul>
-      </div>
+        </div>
       @endif
 
       <form method="POST" action="{{ route('register') }}">
@@ -78,7 +78,6 @@
           @endfor
         </div>
 
-
         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
           <div class="mt-4">
             <label for="terms">
@@ -88,7 +87,7 @@
                   {!! __('I agree to the :terms_of_service and :privacy_policy', [
     'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="">' . __('Terms of Service') . '</a>',
     'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="">' . __('Privacy Policy') . '</a>',
-]) !!}
+  ]) !!}
                 </div>
               </div>
             </label>
@@ -104,7 +103,9 @@
           </button>
         </div>
       </form>
+
     </div>{{-- /.col --}}
   </div>{{-- /.row --}}
-  </div>{{-- /.container --}}
+</div>{{-- /.container --}}
+
 @endsection
