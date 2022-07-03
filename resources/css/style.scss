@@ -1,5 +1,10 @@
 @import "../bootstrap-5.0.2/bootstrap";
 
+.navbar-brand {
+  img {
+    width: 3rem;
+  }
+}
 .logo-register{
   a {
     img {

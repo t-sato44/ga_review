@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light sticky-top">
   <div class="container-fluid ">
-    <a class="navbar-brand" href="#">
-      <img src="{{ asset('img/sample/logo_150x50.png') }}" alt="">
+    <a class="navbar-brand" href="{{ route('home') }}">
+      <img src="{{ asset('img/logo_256x256.png') }}" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,17 @@
         >
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-
-
+      <div class="ms-2">
+        @if (Auth::guard('members')->check())
+          会員：{{ Auth::guard('members')->user()->email }}
+          <a href="{{ route('login.logout') }}" class="btn btn-secondary">ログアウトする</a>
+        @elseif(Auth::guard('administrators')->check())
+          管理者：{{ Auth::guard('administrators')->user()->email }}
+          <a href="{{ route('admin.login.logout') }}" class="btn btn-secondary">ログアウトする</a>
+        @else
+          <a href="{{ route('login.index') }}" class="btn btn-primary">ログインする</a>
+        @endif
+      </div>
     </div>
   </div>
 </nav>
