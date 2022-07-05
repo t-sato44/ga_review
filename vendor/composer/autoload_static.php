@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3ed128cc797c33bd1ec369756c88471c
+class ComposerStaticInitced678ac93ac6aa7a50fb5fb5ba962d0
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -586,6 +586,8 @@ class ComposerStaticInit3ed128cc797c33bd1ec369756c88471c
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\MailSendController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailSendController.php',
+        'App\\Http\\Controllers\\ReviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReviewController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -595,6 +597,18 @@ class ComposerStaticInit3ed128cc797c33bd1ec369756c88471c
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Device' => __DIR__ . '/../..' . '/app/Models/Device.php',
+        'App\\Models\\DeviceGame' => __DIR__ . '/../..' . '/app/Models/DeviceGame.php',
+        'App\\Models\\Game' => __DIR__ . '/../..' . '/app/Models/Game.php',
+        'App\\Models\\GameHave' => __DIR__ . '/../..' . '/app/Models/GameHave.php',
+        'App\\Models\\GameLike' => __DIR__ . '/../..' . '/app/Models/GameLike.php',
+        'App\\Models\\Genre' => __DIR__ . '/../..' . '/app/Models/Genre.php',
+        'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
+        'App\\Models\\Mypage' => __DIR__ . '/../..' . '/app/Models/Mypage.php',
+        'App\\Models\\MypageGenre' => __DIR__ . '/../..' . '/app/Models/MypageGenre.php',
+        'App\\Models\\Review' => __DIR__ . '/../..' . '/app/Models/Review.php',
+        'App\\Models\\ReviewLike' => __DIR__ . '/../..' . '/app/Models/ReviewLike.php',
+        'App\\Models\\ReviewShare' => __DIR__ . '/../..' . '/app/Models/ReviewShare.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -825,6 +839,19 @@ class ComposerStaticInit3ed128cc797c33bd1ec369756c88471c
         'DASPRiD\\Enum\\NullValue' => __DIR__ . '/..' . '/dasprid/enum/src/NullValue.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\DeviceGameSeeder' => __DIR__ . '/../..' . '/database/seeders/DeviceGameSeeder.php',
+        'Database\\Seeders\\DeviceSeeder' => __DIR__ . '/../..' . '/database/seeders/DeviceSeeder.php',
+        'Database\\Seeders\\GameHaveSeeder' => __DIR__ . '/../..' . '/database/seeders/GameHaveSeeder.php',
+        'Database\\Seeders\\GameLikeSeeder' => __DIR__ . '/../..' . '/database/seeders/GameLikeSeeder.php',
+        'Database\\Seeders\\GameSeeder' => __DIR__ . '/../..' . '/database/seeders/GameSeeder.php',
+        'Database\\Seeders\\GenreSeeder' => __DIR__ . '/../..' . '/database/seeders/GenreSeeder.php',
+        'Database\\Seeders\\ImageSeeder' => __DIR__ . '/../..' . '/database/seeders/ImageSeeder.php',
+        'Database\\Seeders\\MypageGenreSeeder' => __DIR__ . '/../..' . '/database/seeders/MypageGenreSeeder.php',
+        'Database\\Seeders\\MypageSeeder' => __DIR__ . '/../..' . '/database/seeders/MypageSeeder.php',
+        'Database\\Seeders\\ReviewLikeSeeder' => __DIR__ . '/../..' . '/database/seeders/ReviewLikeSeeder.php',
+        'Database\\Seeders\\ReviewSeeder' => __DIR__ . '/../..' . '/database/seeders/ReviewSeeder.php',
+        'Database\\Seeders\\ReviewShareSeeder' => __DIR__ . '/../..' . '/database/seeders/ReviewShareSeeder.php',
+        'Database\\Seeders\\UserSeeder' => __DIR__ . '/../..' . '/database/seeders/UserSeeder.php',
         'DebugBar\\Bridge\\CacheCacheCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/CacheCacheCollector.php',
         'DebugBar\\Bridge\\DoctrineCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/DoctrineCollector.php',
         'DebugBar\\Bridge\\MonologCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/MonologCollector.php',
@@ -6280,10 +6307,10 @@ class ComposerStaticInit3ed128cc797c33bd1ec369756c88471c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3ed128cc797c33bd1ec369756c88471c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3ed128cc797c33bd1ec369756c88471c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3ed128cc797c33bd1ec369756c88471c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3ed128cc797c33bd1ec369756c88471c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitced678ac93ac6aa7a50fb5fb5ba962d0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitced678ac93ac6aa7a50fb5fb5ba962d0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitced678ac93ac6aa7a50fb5fb5ba962d0::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitced678ac93ac6aa7a50fb5fb5ba962d0::$classMap;
 
         }, null, ClassLoader::class);
     }

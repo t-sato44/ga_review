@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
@@ -17,10 +18,19 @@ class ReviewController extends Controller
 	// Reviewページへの表示
 	public function index()
 	{
+
+		if(Gate::allows('admin')){
+			// 管理者だけ処理を実行します
+		}
+		if(Gate::denies('read')){
+			// 閲覧者を除いて処理を実行します
+		}
+
 		// この２つの$reviewsと$reviews2はほぼ同じことを行っている
 		$reviews = Review::all();
 		// $reviews2 = DB::table('reviews')->get();
 		// dd($reviews);
+
 		return view('review.index', compact('reviews'));
 	}
 

@@ -45,19 +45,19 @@
 
         <div class="mb-4">
           <label for="password" class="form-label"><strong>{{ __('パスワード') }}</strong></label>
-          <input id="password" class="form-control" type="text" name="password" :value="old('password')" required
+          <input id="password" class="form-control" type="password" name="password" :value="old('password')" required
             autofocus autocomplete="password">
         </div>
 
         <div class="mb-4">
           <label for="password_confirmation" class="form-label"><strong>{{ __('パスワードの確認') }}</strong></label>
-          <input id="password_confirmation" class="form-control" type="text" name="password_confirmation"
+          <input id="password_confirmation" class="form-control" type="password" name="password_confirmation"
             :value="old('password_confirmation')" required autofocus autocomplete="new-password">
         </div>
 
         <div class="mb-4">
           <label for="birth_date" class="form-label"><strong>{{ __('誕生日') }}</strong></label>
-          <input id="birth_date" class="form-control" type="text" name="birth_date" :value="old('birth_date')"
+          <input id="birth_date" class="form-control" type="date" name="birth_date" :value="old('birth_date')"
             required>
         </div>
 

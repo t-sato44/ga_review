@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
         <li class="nav-item">
-          <a class="nav-link" href="#">FORM</a>
+          <a class="nav-link" href="{{ route('review.index') }}">レビュー</a>
         </li>
       </ul>
       <form method="GET" action="#" class="d-flex">
@@ -24,15 +24,7 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div class="ms-2">
-        @if (Auth::guard('members')->check())
-          会員：{{ Auth::guard('members')->user()->email }}
-          <a href="{{ route('login.logout') }}" class="btn btn-secondary">ログアウトする</a>
-        @elseif(Auth::guard('administrators')->check())
-          管理者：{{ Auth::guard('administrators')->user()->email }}
-          <a href="{{ route('admin.login.logout') }}" class="btn btn-secondary">ログアウトする</a>
-        @else
-          <a href="{{ route('login.index') }}" class="btn btn-primary">ログインする</a>
-        @endif
+        <a href="{{ route('register') }}" class="btn btn-primary">会員登録</a>
       </div>
     </div>
   </div>
