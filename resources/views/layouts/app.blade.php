@@ -1,47 +1,50 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<x-head.head />
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+{{-- @livewire('navigation-menu') --}}
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+<nav class="d-flex justify-content-between p-2">
 
-        <!-- Styles -->
-        @livewireStyles
+  <div class="d-flex align-items-center">
+    <a href="{{ route('dashboard') }}" class="navbar-brand">
+      <img src="{{ asset('img/logo_256x256.png') }}" alt="">
+    </a>
+    <div class="">
+      <a class="btn btn-secondary" href="{{ route('dashboard') }}">マイページ</a>
+    </div>
+  </div>
 
-        @vite([
-            'resources/css/app.css',
-            'resources/css/style.scss',
-            'resources/js/app.js'
-        ])
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+  <div class="d-flex align-items-center">
+    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+			<img
+				class=""
+				src="{{ Auth::user()->profile_photo_url }}"
+				alt="{{ Auth::user()->name }}"
+			/>
+    @else
+      <div class="me-2">{{ Auth::user()->name }}</div>
+    @endif
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <div class="me-2">
+			<a class="btn btn-info" href="{{ route('profile.show') }}">Profile</a>
+		</div>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+      <a href="{{ route('api-tokens.index') }}">API Tokens</a>
+    @endif
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+		<div class="">
+			<form method="POST" action="{{ route('logout') }}" x-data>
+				@csrf
+				<input type="submit" class="btn btn-warning" href="{{ route('logout') }}" value="ログアウト">
+			</form>
+		</div>
 
-        @stack('modals')
+  </div>
 
-        @livewireScripts
-    </body>
-</html>
+</nav>
+
+<main>{{ $slot }}</main>
+
+@stack('modals')
+
+<x-footer.footer />
