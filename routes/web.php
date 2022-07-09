@@ -19,6 +19,10 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 // レビューページ
 Route::resource('review', Controllers\ReviewController::class);
 
+// ゲームタイトルページ
+Route::resource('game', Controllers\GameController::class);
+
+
 // ジェットストリーム管理画面
 Route::middleware([
     'auth:sanctum',

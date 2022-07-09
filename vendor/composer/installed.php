@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '6d1430ac22aa99917cdd9c7f8e97e6617117545c',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -119,7 +119,7 @@
             'install_path' => __DIR__ . '/../facade/ignition-contracts',
             'aliases' => array(),
             'reference' => '3c921a1cdba35b68a7f0ccffc6dffc1995b18267',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.19.0',
@@ -385,6 +385,15 @@
                 0 => 'v9.19.0',
             ),
         ),
+        'innocenzi/laravel-vite' => array(
+            'pretty_version' => '0.1.27',
+            'version' => '0.1.27.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../innocenzi/laravel-vite',
+            'aliases' => array(),
+            'reference' => '50bc07018bd6a2b6c88e074c62bfb0909275f327',
+            'dev_requirement' => false,
+        ),
         'jaybizzle/crawler-detect' => array(
             'pretty_version' => 'v1.2.111',
             'version' => '1.2.111.0',
@@ -437,12 +446,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '6d1430ac22aa99917cdd9c7f8e97e6617117545c',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1084,6 +1093,15 @@
             'aliases' => array(),
             'reference' => 'fe37a0eafe6ea040804255c70e9808af13314f87',
             'dev_requirement' => true,
+        ),
+        'spatie/laravel-package-tools' => array(
+            'pretty_version' => '1.12.1',
+            'version' => '1.12.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/laravel-package-tools',
+            'aliases' => array(),
+            'reference' => '09f80fa240d44fafb1c70657c74ee44ffa929357',
+            'dev_requirement' => false,
         ),
         'symfony/console' => array(
             'pretty_version' => 'v6.1.2',

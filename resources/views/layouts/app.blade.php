@@ -13,11 +13,9 @@
         <!-- Styles -->
         @livewireStyles
 
-        @vite([
-            'resources/css/app.css',
-            'resources/css/style.scss',
-            'resources/js/app.js'
-        ])
+        @vite('resources/css/app.css')
+        @vite('resources/css/style.scss')
+        @vite('resources/js/app.js')
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
