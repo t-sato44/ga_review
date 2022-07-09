@@ -13,11 +13,9 @@
     <title>{{ config('app.name') }}</title>
   @endif
   <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('img/favicon-16x16.png') }}">
-  @vite([
-    'resources/css/app.css',
-    'resources/css/style.scss',
-    'resources/js/app.js'
-  ])
+  @vite('resources/css/app.css')
+  @vite('resources/css/style.scss')
+  @vite('resources/js/app.js')
   @livewireStyles
   @hasSection('title')
     <meta property="og:title" content="@yield('title') | {{ config('app.name') }}" />
