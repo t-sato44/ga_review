@@ -30,13 +30,13 @@ class AuthServiceProvider extends ServiceProvider
             return ($user->role == 100);
         });
 
-        // 編集者
-        Gate::define('edit', function ($user) {
+        // スタッフ
+        Gate::define('staff', function ($user) {
             return ($user->role >= 50);
         });
 
-        // 閲覧者
-        Gate::define('read', function ($user) {
+        // メンバー
+        Gate::define('member', function ($user) {
             return ($user->role > 0);
         });
     }

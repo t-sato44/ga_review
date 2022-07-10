@@ -17,7 +17,8 @@ use App\Http\Controllers;
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 // レビューページ
-Route::resource('review', Controllers\ReviewController::class);
+Route::get('/review', [Controllers\ReviewController::class, 'index'])->name('review.index');
+Route::get('/review/$review', [Controllers\ReviewController::class, 'show'])->name('review.show');
 
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
@@ -28,15 +29,23 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    // マイページ閲覧
-    Route::get('/dashboard', [Controllers\MypageController::class, 'index'])->name('dashboard');
-    // マイページからのユーザー情報登録
-    Route::post('/dashboard', [Controllers\MypageController::class, 'update'])->name('mypage.update');
 });
 
-// オリジナル管理画面
+// 管理者グループ
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
     Route::get('/admin', [Controllers\AdminController::class, 'index'])->name('admin');
+});
+
+// メンバーグループ
+Route::group(['middleware' => ['auth', 'can:member']], function () {
+    Route::get('/mypage', [Controllers\MypageController::class, 'index'])->name('mypage');
+    Route::get('/mypage/edit', [Controllers\MypageController::class, 'edit'])->name('mypage.edit');
+    Route::put('/mypage', [Controllers\MypageController::class, 'update'])->name('mypage.update');
+    Route::post('/mypage', [Controllers\MypageController::class, 'store'])->name('mypage.store');
+    Route::get('/review/edit', [Controllers\ReviewController::class, 'edit'])->name('review.edit');
+    Route::get('/review/create', [Controllers\ReviewController::class, 'create'])->name('review.create');
+    Route::put('/review', [Controllers\ReviewController::class, 'update'])->name('review.update');
+    Route::post('/review', [Controllers\ReviewController::class, 'store'])->name('review.store');
 });
 
 // メール送信テスト用

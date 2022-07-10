@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-info sticky-top">
   <div class="container-fluid ">
     <a class="navbar-brand" href="{{ route('home') }}">
       <img src="{{ asset('img/logo_256x256.png') }}" alt="">
@@ -6,10 +6,10 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-2">
+    <div class="collapse justify-content-between navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 me-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('review.index') }}">レビュー</a>
+          <a class="nav-link btn btn-primary text-white" href="{{ route('review.index') }}">レビュー一覧</a>
         </li>
       </ul>
       <form method="GET" action="#" class="d-flex">
@@ -23,12 +23,20 @@
         >
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <div class="ms-2">
-        <a href="{{ route('login') }}" class="btn btn-success">ログイン</a>
-      </div>
-      <div class="ms-2">
-        <a href="{{ route('register') }}" class="btn btn-primary">会員登録</a>
-      </div>
     </div>
   </div>
 </nav>
+@if (session('success'))
+  <div class="alert alert-success text-center">
+    {{ session('success') }}
+  </div>
+@endif
+@if ($errors->any())
+  <div class="alert alert-danger" {{ $attributes }}>
+    <ul class="mb-0">
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+@endif

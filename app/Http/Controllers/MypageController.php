@@ -16,20 +16,23 @@ class MypageController extends Controller
 		if (Gate::allows('admin')) {
 			// 管理者だけ処理を実行します
 		}
-		if (Gate::denies('read')) {
+		if (Gate::denies('member')) {
 			// 閲覧者を除いて処理を実行します
 		}
 		$user = Auth::user();
 		$mypage = $user->mypage;
 		$mypage_genres = $mypage->genre;
-		$mypage_genre_ids = [];
+		$genres = [];
 		foreach ($mypage_genres as $k => $v) {
-			$mypage_genre_ids[] = $v["id"];
+			$genres[] = $v->name;
 		}
-		// dd($mypage_genre_ids);
+		$sexs = config('sex');
+		$sex = $sexs[$mypage->sex];
+		$twitter = 'https://twitter.com/' . $mypage->twitter;
 		$prefectures = config('pref');
-		$genres = Genre::all();
-		return view('dashboard', compact('user', 'mypage', 'prefectures', 'genres', 'mypage_genre_ids'));
+		$area = $prefectures[$mypage->area];
+
+		return view('mypage.index', compact('user', 'mypage', 'sex', 'area', 'twitter', 'genres'));
 	}
 
 	public function update(Request $request)
@@ -42,7 +45,6 @@ class MypageController extends Controller
 			'birth_date'  => 'nullable|date_format:Y-m-d',
 			'area'        => 'nullable|between:1,47',
 			'tel'         => 'nullable|numeric',
-			'login_id'    => 'required|email|unique:users,email',
 			'nickname'    => 'required|max:20',
 			'level'       => 'required|between:1,3',
 			'twitter'     => 'nullable|max:50',
@@ -52,11 +54,9 @@ class MypageController extends Controller
 		$user->name       = $request->name;
 		$user->name_kana  = $request->name_kana;
 		$user->birth_date = $request->birth_date;
-		$user->email      = $request->login_id;
 		$user->nickname   = $request->nickname;
 		$user->level      = $request->level;
 		$user->save();
-		// dd($user);
 		$mypage = Auth::user()->mypage;
 		if ($mypage === null) {
 			$mypage = new Mypage;
@@ -69,13 +69,22 @@ class MypageController extends Controller
 		$mypage->twitter   = $request->twitter;
 		$mypage->save();
 		$mypage->genre()->sync($request->genre);
-		return redirect()->route('dashboard')->with('status', '編集完了');
+		return redirect()->route('mypage')->with('success', 'マイページ編集完了');
 	}
 
-	public function edit($id)
+	public function edit()
 	{
-		$user = User::find($id);
-		return view('user.edit', ['user' => $user]);
+		$user = Auth::user();
+		$mypage = $user->mypage;
+		$mypage_genres = $mypage->genre;
+		$mypage_genre_ids = [];
+		foreach ($mypage_genres as $k => $v) {
+			$mypage_genre_ids[] = $v["id"];
+		}
+		// dd($mypage_genre_ids);
+		$prefectures = config('pref');
+		$genres = Genre::all();
+		return view('mypage.edit', compact('user', 'mypage', 'prefectures', 'genres', 'mypage_genre_ids'));
 	}
 
 }
