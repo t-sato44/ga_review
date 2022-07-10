@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Mypage extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'self_info',
+        'sex',
+        'area',
+        'tel',
+        'twitter',
+        'genre',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function genre()
+    {
+		return $this->belongsToMany(Genre::class);
+    }
 }

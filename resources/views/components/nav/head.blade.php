@@ -24,6 +24,9 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div class="ms-2">
+        <a href="{{ route('login') }}" class="btn btn-success">ログイン</a>
+      </div>
+      <div class="ms-2">
         <a href="{{ route('register') }}" class="btn btn-primary">会員登録</a>
       </div>
     </div>

@@ -14,5 +14,5 @@ class MypageGenre extends Model
      *
      * @var string
      */
-    protected $table = 'mypages_genres';
+    protected $table = 'genre_mypage';
 }

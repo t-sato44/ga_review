@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('area');
             $table->string('tel');
             $table->string('twitter');
-            $table->integer('genre');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

@@ -22,7 +22,6 @@ class MypageSeeder extends Seeder
             'area' => 1,
             'tel' => '090-1111-2222',
             'twitter' => '@ffffff',
-            'genre' => 1,
         ]);
     }
 }

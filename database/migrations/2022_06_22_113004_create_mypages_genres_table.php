@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mypages_genres', function (Blueprint $table) {
+        Schema::create('genre_mypage', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mypage_id');
             $table->unsignedBigInteger('genre_id');
             $table->timestamps();
-
             $table->foreign('mypage_id')->references('id')->on('mypages');
             $table->foreign('genre_id')->references('id')->on('genres');
         });

@@ -62,4 +62,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function mypage()
+    {
+        return $this->hasOne(Mypage::class);
+    }
+
 }

@@ -22,14 +22,16 @@ Route::resource('review', Controllers\ReviewController::class);
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
 
-
 // ジェットストリーム管理画面
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    // マイページ閲覧
     Route::get('/dashboard', [Controllers\MypageController::class, 'index'])->name('dashboard');
+    // マイページからのユーザー情報登録
+    Route::post('/dashboard', [Controllers\MypageController::class, 'update'])->name('mypage.update');
 });
 
 // オリジナル管理画面
