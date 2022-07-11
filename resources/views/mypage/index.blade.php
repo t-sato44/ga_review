@@ -9,7 +9,7 @@
 		<div class="card mb-3">
 			<div class="card-header">自己紹介</div>
 			<div class="card-body">
-				<p class="card-text">{{ $mypage->self_info }}</p>
+				<p class="card-text">{{ $self_info }}</p>
 			</div>
 		</div>
 
@@ -51,7 +51,7 @@
 		<div class="card mb-3">
 			<div class="card-header">電話番号</div>
 			<div class="card-body">
-				<p class="card-text">{{ $mypage->tel }}</p>
+				<p class="card-text">{{ $tel }}</p>
 			</div>
 		</div>
 

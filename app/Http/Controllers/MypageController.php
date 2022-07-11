@@ -20,19 +20,29 @@ class MypageController extends Controller
 			// 閲覧者を除いて処理を実行します
 		}
 		$user = Auth::user();
-		$mypage = $user->mypage;
-		$mypage_genres = $mypage->genre;
+		$sex = "";
+		$area = "";
+		$twitter = "";
 		$genres = [];
-		foreach ($mypage_genres as $k => $v) {
-			$genres[] = $v->name;
+		$self_info = "";
+		$tel = "";
+		$mypage = $user->mypage;
+		if ( $mypage ) {
+			$self_info = $mypage->self_info;
+			$tel = $mypage->tel;
+			$mypage_genres = $mypage->genre;
+			$genres = [];
+			foreach ($mypage_genres as $k => $v) {
+				$genres[] = $v->name;
+			}
+			$sexs = config('sex');
+			$sex = $sexs[$mypage->sex];
+			$twitter = 'https://twitter.com/' . $mypage->twitter;
+			$prefectures = config('pref');
+			$area = $prefectures[$mypage->area];
 		}
-		$sexs = config('sex');
-		$sex = $sexs[$mypage->sex];
-		$twitter = 'https://twitter.com/' . $mypage->twitter;
-		$prefectures = config('pref');
-		$area = $prefectures[$mypage->area];
 
-		return view('mypage.index', compact('user', 'mypage', 'sex', 'area', 'twitter', 'genres'));
+		return view('mypage.index', compact('user', 'mypage', 'self_info', 'tel', 'sex', 'area', 'twitter', 'genres'));
 	}
 
 	public function update(Request $request)
