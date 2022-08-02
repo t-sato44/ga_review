@@ -23,5 +23,14 @@ class MypageSeeder extends Seeder
             'tel' => '090-1111-2222',
             'twitter' => '@ffffff',
         ]);
+
+        Mypage::create([
+            'user_id' => 2,
+            'self_info' => 'ゲームのレヴューします！',
+            'sex' => 2,
+            'area' => 5,
+            'tel' => '090-3333-4444',
+            'twitter' => '@aaaaaa',
+        ]);
     }
 }

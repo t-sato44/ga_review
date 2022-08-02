@@ -14,7 +14,7 @@
 					@if( old('self_info') )
 						<textarea name="self_info" id="self_info" rows="5" class="w-100 form-control">{{old('self_info')}}</textarea>
 					@else
-						<textarea name="self_info" id="self_info" rows="5" class="w-100 form-control">{{$mypage->self_info}}</textarea>
+						<textarea name="self_info" id="self_info" rows="5" class="w-100 form-control">{{$self_info}}</textarea>
 					@endif
 				</div>
 				<div class="py-3">

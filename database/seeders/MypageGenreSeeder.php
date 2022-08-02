@@ -19,5 +19,10 @@ class MypageGenreSeeder extends Seeder
             'mypage_id' => 1,
             'genre_id' => 1,
         ]);
+
+        MypageGenre::create([
+            'mypage_id' => 2,
+            'genre_id' => 1,
+        ]);
     }
 }

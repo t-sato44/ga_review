@@ -22,7 +22,19 @@ class UserSeeder extends Seeder
             'password' => bcrypt('00000000'),
             'birth_date' => '1990-10-12',
             'nickname' => 'サトミン',
-            'level' => 15,
+            'level' => 3,
+            'current_team_id' => 1,
+            'profile_photo_path' => '',
+        ]);
+
+        User::create([
+            'name' => '佐藤トモコ',
+            'name_kana' => 'サトウトモコ',
+            'email' => 'tomoko@mail.com',
+            'password' => bcrypt('11111111'),
+            'birth_date' => '1980-01-01',
+            'nickname' => 'chibi',
+            'level' => 2,
             'current_team_id' => 1,
             'profile_photo_path' => '',
         ]);

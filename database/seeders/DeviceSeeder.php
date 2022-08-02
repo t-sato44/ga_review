@@ -16,15 +16,15 @@ class DeviceSeeder extends Seeder
     public function run()
     {
         Device::create([
-            'name' => 1,
+            'name' => 'PS4',
         ]);
 
         Device::create([
-            'name' => 3,
+            'name' => 'PS5',
         ]);
 
         Device::create([
-            'name' => 2,
+            'name' => 'PS4,PS5,PC',
         ]);
 
     }

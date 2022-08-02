@@ -18,7 +18,7 @@ class ReviewSeeder extends Seeder
         Review::create([
             'game_id' => 1,
             'user_id' => 1,
-            'review' => 'aaa',
+            'review' => 'とても面白い！やり込みたいゲーム',
             'score' => 3,
             'graphic' => 1,
             'volume' => 1,
@@ -28,8 +28,8 @@ class ReviewSeeder extends Seeder
         ]);
         Review::create([
             'game_id' => 2,
-            'user_id' => 1,
-            'review' => 'bbb',
+            'user_id' => 2,
+            'review' => '映像が綺麗。見ているだけでも楽しい',
             'score' => 3,
             'graphic' => 2,
             'volume' => 1,
@@ -40,7 +40,7 @@ class ReviewSeeder extends Seeder
         Review::create([
             'game_id' => 3,
             'user_id' => 1,
-            'review' => 'ccc',
+            'review' => 'みんなで盛り上がれる内容。続編があればもっとやりたい。ß',
             'score' => 3,
             'graphic' => 2,
             'volume' => 1,
