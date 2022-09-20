@@ -11,10 +11,12 @@
       </div>
       <div class="col-12 col-md-6 text-end">
         <ul class="mb-5 list-inline">
-          <li class="list-inline-item">ABOUT</li>
-          <li class="list-inline-item">MEMBERS</li>
-          <li class="list-inline-item">SERVICES</li>
+          <li class="list-inline-item">TOP</li>
+          <li class="list-inline-item">MY PAGE</li>
           <li class="list-inline-item">CONTACT</li>
+          <li class="list-inline-item">利用規約</li>
+          <li class="list-inline-item">プライバシーポリシー</li>
+          <li class="list-inline-item">運営会社</li>
         </ul>
         <ul class="mb-2 list-inline">
           <li class="list-inline-item">Twitter</li>

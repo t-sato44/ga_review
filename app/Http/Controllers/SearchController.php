@@ -4,27 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
-class GameController extends Controller
+class SearchController extends Controller
 {
 	public function __construct(Game $game)
 	{
 		$this->game = $game;
 	}
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {
-        // gamedataの画面表示
-		// $games = Game::all();
-		// dd($games);
 
-		// return view('game.index', compact('games'));
-	// }
+	public function index(Request $request)
+	{
+		$search = $request->input('search') !== null ? $request->input('search') : '';
+		$query  = $this->game::query()
+			->join('bodies', 'quotes.id', '=', 'bodies.quote_id')
+			->select('quotes.id', 'quotes.title', 'bodies.body');
+		if ($search) {
+			$space_conversion = mb_convert_kana($search, 's');
+			$word_searches    = preg_split('/[\s,]+/', $space_conversion, -1, PREG_SPLIT_NO_EMPTY);
+			foreach($word_searches as $v) {
+				$query->where('title', 'LIKE', "%{$v}%")
+					->orWhere('body', 'LIKE', "%{$v}%");
+			}
+		}
+		return view('search.index');
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -55,9 +58,7 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        $game = $this->game->find($id);
-        // dd($game);
-		return view('game.show', compact('game'));
+        //
     }
 
     /**

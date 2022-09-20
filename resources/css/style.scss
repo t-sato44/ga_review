@@ -16,3 +16,11 @@
   display: block;
   padding: 0.3rem;
 }
+.eyecatch {
+  margin-right: 1rem;
+  img {
+    width: 200px;
+    height : 250px;
+    object-fit: cover;
+  }
+}

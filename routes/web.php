@@ -23,6 +23,9 @@ Route::get('/review/$review', [Controllers\ReviewController::class, 'show'])->na
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
 
+// 検索ページ
+Route::resource('search', Controllers\SearchController::class);
+
 // ジェットストリーム管理画面
 Route::middleware([
     'auth:sanctum',

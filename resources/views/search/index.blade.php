@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="text-primary">トップページ</h1>
+<h1 class="text-primary">検索結果一覧</h1>
 
 <div class="row row-cols-1 g-5">
   <div class="col">
