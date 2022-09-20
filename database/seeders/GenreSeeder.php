@@ -24,7 +24,7 @@ class GenreSeeder extends Seeder
         ]);
 
         Genre::create([
-            'name' => 'シューティング',
+            'name' => 'パズル',
         ]);
 
 
