@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -41,6 +42,7 @@ class ReviewController extends Controller
 	 */
 	public function create()
 	{
+
 		return view('review.create');
 	}
 
@@ -54,20 +56,18 @@ class ReviewController extends Controller
 	//レビューページで入力されたデータを保存
 	public function store(Request $request)
 	{
-		$review = new Review();
-		$review->review = $request->input('review');
-		$review->score = $request->input('score');
-		$review->graphic = $request->input('graphic');
-		$review->volume = $request->input('volume');
-		$review->sound = $request->input('sound');
-		$review->story = $request->input('story');
-		$review->comfort = $request->input('comfort');
-		//    $review->game_id = $request->input('game');
-		$review->game_id = $request->input('1');
+		$review          = new Review();
 		$review->user_id = Auth::user()->id;
+		$review->game_id = 1;
+		$review->story   = 1;
+		$review->comfort = 1;
+		$review->graphic = $request->input('graphic');
+		$review->volume  = $request->input('volume');
+		$review->sound   = $request->input('sound');
+		$review->score   = $request->input('score');
+		$review->review  = $request->input('review');
 		$review->save();
-		//    return redirect()->route('review.show', $game);
-		return redirect()->route('review.show', 1);
+		return redirect()->route('review.index');
 	}
 
 	/**

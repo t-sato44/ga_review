@@ -4,59 +4,94 @@
 
 	<h1 class="h5">クチコミ新規登録</h1>
 
-	<x-form-layout>
-		<form action="{{ route('review.store') }}" method="POST">
-			@csrf
-			<div class="mb-3">
-				<div class="py-3">
-					<label for="graphic" class="form-label">グラフィック</label>
-					@if( old('graphic') )
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="1" id="graphic1" name="graphic">
-							<label class="form-check-label" for="graphic1">1</label>
+	<form action="{{ route('review.store') }}" method="POST">
+		@csrf
+
+		<div class="card mb-4">
+			<div class="card-header">評価</div>
+			<div class="card-body">
+				@php
+					$items = [
+						'graphic' => 'グラフィック',
+						'volume' => 'ボリューム',
+						'sound' => 'サウンド',
+					];
+					$score = 10;
+					$evalution = 5;
+				@endphp
+				@foreach ($items as $k => $v)
+					<div class="wrapAssessment">
+						<h2>{{ $v }}</h2>
+						@for ($i = 1; $i <= $score; $i++)
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="{{ $k }}" id="{{ $k }}{{ $i }}" value="{{ $i }}">
+							<label class="form-check-label" for="{{ $k }}{{ $i }}">{{ $i }}</label>
 						</div>
-					@else
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="1" id="graphic1" name="graphic">
-						<label class="form-check-label" for="graphic1">1</label>
+						@endfor
+						@error('graphic')
+						{{ $message }}
+						@enderror
 					</div>
-					@endif
+				@endforeach
+			</div>
+		</div>
+
+		<div class="card mb-4">
+			<div class="card-header">総合評価</div>
+			<div class="card-body">
+				<div class="score">
+					<div class="stars">
+						<span>
+							@for ($i = 1; $i <= $score; $i++)
+								<input id="score{{ $i }}" type="radio" name="score" value="{{ $i }}">
+								<label for="score{{ $i }}">★</label>
+							@endfor
+						</span>
+					</div>
 				</div>
-				<div class="py-3">
-					<label for="device" class="form-label">プレイ機器</label>
-					@if( old('device') )
-						<input type="text" class="form-control" id="device" name="device" value="{{old('device')}}">
-					@else
-						<input type="text" class="form-control" id="device" name="device" value="">
-					@endif
-				</div>
 			</div>
-			<div class="py-3">
-				<label for="name_kana" class="form-label">総合評価</label>
-				@if( old('name_kana') )
+		</div>
+
+		<div class="card mb-4">
+			<div class="card-header">プレイ機器</div>
+			<div class="card-body">
+				@php
+					$items = [
+						[
+							'id' => 1,
+							'name' => 'Nintendo Switch'
+						],
+						[
+							'id' => 2,
+							'name' => 'PlayStation4'
+						],
+						[
+							'id' => 3,
+							'name' => 'PlayStation5'
+						],
+					];
+				@endphp
+				@foreach ($items as $item)
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="1" id="score1" name="score">
-						<label class="form-check-label" for="score1">1</label>
+						<input class="form-check-input" name="devices" type="checkbox" value="{{ $item['id'] }}" id="defaultCheck{{ $item['id']}}">
+						<label class="form-check-label" for="defaultCheck{{ $item['id']}}">
+							{{ $item['name'] }}
+						</label>
 					</div>
-				@else
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="1" id="score1" name="score">
-						<label class="form-check-label" for="score1">1</label>
-					</div>
-				@endif
+				@endforeach
 			</div>
-			<div class="py-3">
-				<label class="form-label">レビュー</label>
-				@if ( old('review') )
-					<textarea name="review" id="review" rows="7" class="form-control">{{ old('review') }}</textarea>
-				@else
-					<textarea name="review" id="review" rows="7" class="form-control"></textarea>
-				@endif
+		</div>
+
+		<div class="card mb-4">
+			<div class="card-header">レビュー</div>
+			<div class="card-body">
+				<textarea name="review" rows="20" class="form-control">{{old('review')}}</textarea>
 			</div>
-			<div class="mt-4">
-				<button type="submit" class="btn btn-primary">登録する</button>
-			</div>
-		</form>
-	</x-form-layout>
+		</div>
+	
+		<div class="text-center">
+			<button type="submit" class="btn btn-primary">送信</button>
+		</div>
+	</form>
 
 @endsection
