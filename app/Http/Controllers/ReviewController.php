@@ -59,11 +59,11 @@ class ReviewController extends Controller
 		$review          = new Review();
 		$review->user_id = Auth::user()->id;
 		$review->game_id = 1;
-		$review->story   = 1;
-		$review->comfort = 1;
 		$review->graphic = $request->input('graphic');
 		$review->volume  = $request->input('volume');
 		$review->sound   = $request->input('sound');
+		$review->story   = $request->input('story');
+		$review->comfort = $request->input('comfort');
 		$review->score   = $request->input('score');
 		$review->review  = $request->input('review');
 		$review->save();

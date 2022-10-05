@@ -15,6 +15,8 @@
 						'graphic' => 'グラフィック',
 						'volume' => 'ボリューム',
 						'sound' => 'サウンド',
+						'story' => 'ストーリー',
+						'comfort' => '快適さ'
 					];
 					$score = 10;
 					$evalution = 5;
