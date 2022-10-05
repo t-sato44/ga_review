@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
@@ -33,7 +35,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+		return view('game.create');
     }
 
     /**
@@ -42,9 +44,24 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+	//タイトル情報で入力されたデータを保存
+     public function store(Request $request)
     {
-        //
+		$game               = new Game();
+//		$review->user_id = Auth::user()->id;
+//		$review->game_id = 1;
+		$game->title        = $request->input('title');
+		$game->release_date = $request->input('release_date');
+		$game->genre        = $request->input('genre');
+		$game->players      = $request->input('players');
+		$game->offical_url  = $request->input('offical_url');
+		$game->agency       = $request->input('agency');
+		$game->is_new       = 1;
+		$game->is_attention = 1;
+		$game->is_recommend = 1;
+		$game->save();
+		return redirect()->route('game.show');
+
     }
 
     /**

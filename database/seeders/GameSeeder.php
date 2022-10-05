@@ -41,7 +41,7 @@ class GameSeeder extends Seeder
 
         Game::create([
             'title' => 'aaa',
-            'release_date' => 20200104,
+            'release_date' => 2022-09-12,
             'genre' => 'シューティング',
             'players' => 'マルチプレイ',
             'offical_url' => 'ccc.com',

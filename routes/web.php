@@ -22,6 +22,8 @@ Route::get('/review/$review', [Controllers\ReviewController::class, 'show'])->na
 
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
+//Route::get('/game', [Controllers\GameController::class, 'index'])->name('game.index');
+
 
 // 検索ページ
 Route::resource('search', Controllers\SearchController::class);

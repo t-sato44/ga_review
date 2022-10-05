@@ -71,6 +71,10 @@
 							'id' => 3,
 							'name' => 'PlayStation5'
 						],
+						[
+							'id' => 4,
+							'name' => 'PC'
+						],
 					];
 				@endphp
 				@foreach ($items as $item)
