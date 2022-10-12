@@ -13,4 +13,9 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function playdevices() {
+        return $this->belongsToMany('App\Models\PlayDevice');
+    }
+
 }
