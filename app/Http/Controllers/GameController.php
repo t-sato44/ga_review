@@ -19,14 +19,11 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-        // gamedataの画面表示
-		// $games = Game::all();
-		// dd($games);
-
-		// return view('game.index', compact('games'));
-	// }
+    public function index()
+    {
+		$games = Game::all();
+		return view('game.index', compact('games'));
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -60,8 +57,7 @@ class GameController extends Controller
 		$game->is_attention = 1;
 		$game->is_recommend = 1;
 		$game->save();
-		return redirect()->route('game.show');
-
+		return redirect()->route('game.show', $game->id);
     }
 
     /**

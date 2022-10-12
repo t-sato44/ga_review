@@ -7,9 +7,24 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse justify-content-between navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 me-2">
+      <ul class="navbar-nav mb-2 mb-lg-0 me-2 gap-2">
         <li class="nav-item">
           <a class="nav-link btn btn-primary text-white" href="{{ route('review.index') }}">レビュー一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white" href="{{ route('review.create') }}">レビュー登録</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white" href="{{ route('game.index') }}">タイトル一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white" href="{{ route('game.create') }}">タイトル登録</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white" href="{{ route('register') }}">新規会員登録</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary text-white" href="{{ route('mypage') }}">マイページ</a>
         </li>
       </ul>
       <form method="GET" action="#" class="d-flex">
