@@ -15,6 +15,13 @@
 		</div>
 
 		<div class="card mb-4">
+			<div class="card-header">内容説明</div>
+			<div class="card-body">
+				<textarea name="review" rows="10" class="form-control">{{old('review')}}</textarea>
+			</div>
+		</div>
+
+		<div class="card mb-4">
 			<div class="card-header">プレイ機器</div>
 			<div class="card-body">
 				@php

@@ -48,11 +48,15 @@ class GameController extends Controller
 //		$review->user_id = Auth::user()->id;
 //		$review->game_id = 1;
 		$game->title        = $request->input('title');
+    $game->description  = $request->input('description');
 		$game->release_date = $request->input('release_date');
 		$game->genre        = $request->input('genre');
 		$game->players      = $request->input('players');
 		$game->offical_url  = $request->input('offical_url');
 		$game->agency       = $request->input('agency');
+
+		$game->device()->sync([$request->input('devices')]);	
+
 		$game->is_new       = 1;
 		$game->is_attention = 1;
 		$game->is_recommend = 1;

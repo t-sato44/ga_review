@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     use HasFactory;
+
+        /**
+     * モデルと関連しているテーブル
+     *
+     * @var string
+     */
+    protected $table = 'devices';
+
+
+    public function games()
+    {
+        return $this->belongsToMany('App\Models\Game');
+    }
+
 }
