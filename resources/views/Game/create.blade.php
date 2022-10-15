@@ -111,8 +111,8 @@
 				@endphp
 				@foreach ($items as $item)
 					<div class="form-check">
-						<input class="form-check-input" name="devices" type="checkbox" value="{{ $item['id'] }}" id="defaultCheck{{ $item['id']}}">
-						<label class="form-check-label" for="defaultCheck{{ $item['id']}}">
+						<input class="form-check-input" name="categories[]" type="checkbox" value="{{ $item['id'] }}" id="category{{ $item['id']}}">
+						<label class="form-check-label" for="category{{ $item['id']}}">
 							{{ $item['name'] }}
 						</label>
 					</div>
