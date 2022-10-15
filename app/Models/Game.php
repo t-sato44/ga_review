@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-        /**
-     * モデルと関連しているテーブル
-     *
-     * @var string
-     */
-    protected $table = 'games';
+  /**
+   * モデルと関連しているテーブル
+   *
+   * @var string
+   */
+  protected $table = 'games';
 
 
-    public function devices()
-    {
-        return $this->belongsToMany('App\Models\Device');
-    }
+  public function devices()
+  {
+    return $this->belongsToMany(Device::class);
+  }
 }

@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
             'level' => 3,
             'current_team_id' => 1,
             'profile_photo_path' => '',
+            'role' => 100,
         ]);
 
         User::create([
@@ -37,6 +38,7 @@ class UserSeeder extends Seeder
             'level' => 2,
             'current_team_id' => 1,
             'profile_photo_path' => '',
+            'role' => 1,
         ]);
 
     }

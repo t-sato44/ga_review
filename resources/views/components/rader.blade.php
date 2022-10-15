@@ -2,7 +2,6 @@
 <script>
   const data_{{$data->id}} = {
     labels: [
-      'スコア',
       'グラフィック',
       'ボリューム',
       'サウンド',
@@ -12,7 +11,7 @@
     datasets: [
       {
         label: 'データ',
-        data: [{{$data->score}}, {{$data->graphic}}, {{$data->volume}}, {{$data->sound}}, {{$data->story}}, {{$data->comfort}}],
+        data: [{{$data->graphic}}, {{$data->volume}}, {{$data->sound}}, {{$data->story}}, {{$data->comfort}}],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgb(255, 99, 132)',
@@ -35,7 +34,7 @@
       scales: {
         r: {
           min: 0,
-          max: 5,
+          max: 10,
           stepSize: 1,
           fontSize: 10,
           fontColor: "purple",

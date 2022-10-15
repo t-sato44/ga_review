@@ -41,26 +41,26 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-	//タイトル情報で入力されたデータを保存
-     public function store(Request $request)
+    //タイトル情報で入力されたデータを保存
+    public function store(Request $request)
     {
+      // dd($request->devices);
 		$game               = new Game();
 //		$review->user_id = Auth::user()->id;
 //		$review->game_id = 1;
 		$game->title        = $request->input('title');
-    $game->description  = $request->input('description');
+    // $game->description  = $request->input('description');
 		$game->release_date = $request->input('release_date');
 		$game->genre        = $request->input('genre');
 		$game->players      = $request->input('players');
 		$game->offical_url  = $request->input('offical_url');
 		$game->agency       = $request->input('agency');
-
-		$game->device()->sync([$request->input('devices')]);	
-
 		$game->is_new       = 1;
 		$game->is_attention = 1;
 		$game->is_recommend = 1;
 		$game->save();
+    $game->devices()->attach($request->devices);
+		// $game->device()->sync([$request->input('devices')]);
 		return redirect()->route('game.show', $game->id);
     }
 
@@ -72,9 +72,8 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        $game = $this->game->find($id);
-        // dd($game);
-		return view('game.show', compact('game'));
+      $game = $this->game->find($id);
+      return view('game.show', compact('game'));
     }
 
     /**

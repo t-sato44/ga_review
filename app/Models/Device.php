@@ -19,7 +19,7 @@ class Device extends Model
 
     public function games()
     {
-        return $this->belongsToMany('App\Models\Game');
+		return $this->belongsToMany(Game::class);
     }
 
 }

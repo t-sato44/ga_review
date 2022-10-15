@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,11 +11,11 @@ use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+	public function __construct(Review $review, Game $game)
+	{
+		$this->review = $review;
+		$this->game = $game;
+	}
 
 	// Reviewページへの表示
 	// public function index()
@@ -42,8 +43,9 @@ class ReviewController extends Controller
 	 */
 	public function create()
 	{
-
-		return view('review.create');
+		$games = $this->game->all();
+		// dd($games);
+		return view('review.create', compact('games'));
 	}
 
 	/**
@@ -58,19 +60,17 @@ class ReviewController extends Controller
 	{
 		$review          = new Review();
 		$review->user_id = Auth::user()->id;
-		$review->game_id = 1;
+		$review->game_id = $request->input('game');
 		$review->graphic = $request->input('graphic');
 		$review->volume  = $request->input('volume');
 		$review->sound   = $request->input('sound');
 		$review->story   = $request->input('story');
 		$review->comfort = $request->input('comfort');
 		$review->score   = $request->input('score');
-		
-		$review->playdevice()->sync([$request->input('playdevices')]);	
-
 		$review->review  = $request->input('review');
 		$review->save();
-		return redirect()->route('review.index');
+    $review->device()->attach($request->devices);
+		return redirect()->route('review.show', $review->id);
 	}
 
 	/**
@@ -81,7 +81,9 @@ class ReviewController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$review = $this->review->find($id);
+		$game = $this->game->find($review->game_id);
+		return view('review.show', compact('review', 'game'));
 	}
 
 	/**

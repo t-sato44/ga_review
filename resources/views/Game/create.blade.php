@@ -17,7 +17,7 @@
 		<div class="card mb-4">
 			<div class="card-header">内容説明</div>
 			<div class="card-body">
-				<textarea name="review" rows="10" class="form-control">{{old('review')}}</textarea>
+				<textarea name="description" rows="10" class="form-control">{{old('review')}}</textarea>
 			</div>
 		</div>
 
@@ -46,7 +46,7 @@
 				@endphp
 				@foreach ($items as $item)
 					<div class="form-check">
-						<input class="form-check-input" name="devices" type="checkbox" value="{{ $item['id'] }}" id="defaultCheck{{ $item['id']}}">
+						<input class="form-check-input" name="devices[]" type="checkbox" value="{{ $item['id'] }}" id="defaultCheck{{ $item['id']}}">
 						<label class="form-check-label" for="defaultCheck{{ $item['id']}}">
 							{{ $item['name'] }}
 						</label>
