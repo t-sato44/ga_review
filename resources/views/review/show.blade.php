@@ -20,7 +20,17 @@
 
     <div id="info" class="tab-pane active">
       <h5 class="card-title mt-2">ゲームタイトル: {{ $game->title }}</h5>
-      <p class="card-date">リリース日 {{ $game->release_date }}</p>
+      <ul>
+        <li>説明：{{ $game->description }}</li>
+        <li>プレイ人数：{{ $game->players}}</li>
+        <li>オフィシャルURL：
+          <a href="{{ $game->offical_url }}" target="_blank" rel="noopener">
+            {{ $game->offical_url }}
+          </a>
+        </li>
+        <li>運営：{{ $game->agency }}</li>
+        <li>リリース日：{{ $game->release_date }}</li>
+      </ul>
     </div>
 
     <div id="voice" class="tab-pane">
@@ -35,8 +45,9 @@
         <div class="col-4">
           <div class="card h-100">
             <div class="card-body">
+              <div>投稿者：{{ $review->user->name }}</div>
+              <div class="starsScore" style="--rating: {{ $review->score }};" aria-label="Rating"></div>
               <div>{{ $review->review }}</div>
-              <div>{{ $review->score }}</div>
               <div>{{ $review->created_at }}</div>
             </div>
           </div>

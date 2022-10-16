@@ -16,9 +16,18 @@ class Game extends Model
    */
   protected $table = 'games';
 
+  public function reviews()
+  {
+    return $this->hasMany(Review::class);
+  }
 
   public function devices()
   {
     return $this->belongsToMany(Device::class)->withTimestamps();;
+  }
+
+  public function genres()
+  {
+    return $this->belongsToMany(Genre::class)->withTimestamps();;
   }
 }

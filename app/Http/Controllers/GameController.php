@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Helper;
 
 class GameController extends Controller
 {
@@ -44,6 +45,10 @@ class GameController extends Controller
     //タイトル情報で入力されたデータを保存
     public function store(Request $request)
     {
+      $validated = $request->validate([
+        'title' => 'required|unique:games|max:255',
+        'description' => 'max:16384',
+      ]);
       $game               = new Game();
       $game->title        = $request->input('title');
       $game->release_date = $request->input('release_date');
@@ -67,8 +72,20 @@ class GameController extends Controller
      */
     public function show($id)
     {
-      $game = $this->game->find($id);
-      return view('game.show', compact('game'));
+      $game    = $this->game->find($id);
+      $devices = $game->devices;
+      $genres  = $game->genres;
+      $reviews = $game->reviews;
+      $score = Helper::score_avg($reviews);
+      $chart = Helper::chart_avg($reviews);
+      return view('game.show', compact(
+        'game',
+        'devices',
+        'genres',
+        'reviews',
+        'score',
+        'chart'
+      ));
     }
 
     /**

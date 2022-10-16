@@ -11,6 +11,11 @@ class Genre extends Model
 
     public function mypage()
     {
-		return $this->belongsToMany(Mypage::class);
+      return $this->belongsToMany(Mypage::class);
+    }
+
+    public function game()
+    {
+      return $this->belongsToMany(Game::class);
     }
 }

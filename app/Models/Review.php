@@ -16,7 +16,7 @@ class Review extends Model
 
 	public function game()
 	{
-		return $this->belongsToMany(Game::class);
+		return $this->belongsTo(Game::class);
 	}
 
 	public function device()
