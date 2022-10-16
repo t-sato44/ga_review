@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,9 +16,10 @@ class HomeController extends Controller
 		if( Gate::denies('read') ){
 			// 閲覧者以外の処理になる
 		}
-		$reviews = Review::all();
-		// dd($reviews);
-		return view('home.index', compact('reviews'));
+		$games_new       = Game::where('is_new', true)->get();
+		$games_attention = Game::where('is_attention', true)->get();
+		$games_recommend = Game::where('is_recommend', true)->get();
+		return view('home.index', compact('games_new', 'games_attention', 'games_recommend'));
 	}
 
 }

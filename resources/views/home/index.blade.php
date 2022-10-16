@@ -9,48 +9,27 @@
     <div class="card h-100">
       <div class="card-header"><h2>新着タイトル</h2></div>
       <div class="card-body">
-        <div class="card mb-4">
-          <h5 class="card-header">どうぶつの森</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/200x250.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4">
-          <h5 class="card-header">ファイナルファンタジー</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
+        @foreach ($games_new as $k => $v)
+        @if ($k == $games_new->keys()->last())
+          <div class="card">
+        @else
+          <div class="card mb-2">
+        @endif
+            <h5 class="card-header">{{ $v->title }}</h5>
+            <div class="card-body d-flex">
+              <div class="eyecatch">
+                <img src="http://placehold.jp/200x250.png" alt="">
+              </div>
+              <div class="card-text">
+                <div>説明：{{ $v->description }}</div>
+                <div>リリース日：{{ $v->release_date }}</div>
+                <div>プレイ人数：{{ $v->players }}</div>
+                <div>オフィシャルURL：{{ $v->offical_url }}</div>
+                <div>運営：{{ $v->agency }}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card">
-          <h5 class="card-header">ドラゴンクエスト</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>
@@ -58,48 +37,27 @@
     <div class="card h-100">
       <div class="card-header"><h2>注目タイトル</h2></div>
       <div class="card-body">
-        <div class="card mb-4">
-          <h5 class="card-header">ロマンシングサガ</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/200x250.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4">
-          <h5 class="card-header">ストリートファイター</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
+        @foreach ($games_attention as $k => $v)
+        @if ($k == $games_attention->keys()->last())
+          <div class="card">
+        @else
+          <div class="card mb-2">
+        @endif
+            <h5 class="card-header">{{ $v->title }}</h5>
+            <div class="card-body d-flex">
+              <div class="eyecatch">
+                <img src="http://placehold.jp/200x250.png" alt="">
+              </div>
+              <div class="card-text">
+                <div>説明：{{ $v->description }}</div>
+                <div>リリース日：{{ $v->release_date }}</div>
+                <div>プレイ人数：{{ $v->players }}</div>
+                <div>オフィシャルURL：{{ $v->offical_url }}</div>
+                <div>運営：{{ $v->agency }}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card">
-          <h5 class="card-header">スプラトゥーン</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>
@@ -107,48 +65,27 @@
     <div class="card h-100">
       <div class="card-header"><h2>おすすめタイトル</h2></div>
       <div class="card-body">
-        <div class="card mb-4">
-          <h5 class="card-header">ロマンシングサガ</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/200x250.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4">
-          <h5 class="card-header">ストリートファイター</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
+        @foreach ($games_recommend as $k => $v)
+        @if ($k == $games_recommend->keys()->last())
+          <div class="card">
+        @else
+          <div class="card mb-2">
+        @endif
+            <h5 class="card-header">{{ $v->title }}</h5>
+            <div class="card-body d-flex">
+              <div class="eyecatch">
+                <img src="http://placehold.jp/200x250.png" alt="">
+              </div>
+              <div class="card-text">
+                <div>説明：{{ $v->description }}</div>
+                <div>リリース日：{{ $v->release_date }}</div>
+                <div>プレイ人数：{{ $v->players }}</div>
+                <div>オフィシャルURL：{{ $v->offical_url }}</div>
+                <div>運営：{{ $v->agency }}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card">
-          <h5 class="card-header">スプラトゥーン</h5>
-          <div class="card-body d-flex">
-            <div class="eyecatch">
-              <img src="http://placehold.jp/300x200.png" alt="">
-            </div>
-            <div class="card-text">
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-              <p>----------------------------</p>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>
