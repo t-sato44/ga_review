@@ -5,12 +5,16 @@
     "isEntry": true
   },
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app.38b584c0.css",
+=======
+    "file": "assets/app.d72ac827.css",
+>>>>>>> master
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/style.scss": {
-    "file": "assets/style.0b4987f9.css",
+    "file": "assets/style.78d10480.css",
     "src": "resources/css/style.scss",
     "isEntry": true
   }

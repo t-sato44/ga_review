@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="h5">タイトル情報登録</h1>
+<h1>タイトル情報登録</h1>
 
 <form action="{{ route('game.store') }}" method="POST">
 	@csrf
@@ -61,18 +61,25 @@
 				<input id="release_date" class="form-control" type="date" name="release_date" :value="old('release_date')" required>
 			</div>
 		</div>
-        
+
 		<div class="card mb-4">
 			<div class="card-header">ジャンル</div>
 			<div class="card-body">
-				<textarea name="genre" rows="1" class="form-control">{{old('game')}}</textarea>
+				@foreach ($genres as $genre)
+					<div class="form-check">
+						<input class="form-check-input" name="genres[]" type="checkbox" value="{{ $genre['id'] }}" id="genreCheck{{ $genre['id']}}">
+						<label class="form-check-label" for="genreCheck{{ $genre['id']}}">
+							{{ $genre['name'] }}
+						</label>
+					</div>
+				@endforeach
 			</div>
 		</div>
 
 		<div class="card mb-4">
 			<div class="card-header">プレイ人数</div>
 			<div class="card-body">
-				<textarea name="players" rows="1" class="form-control">{{old('game')}}</textarea>
+				<input type="number" name="players" class="form-control" value="{{old('players')}}" min="1" max="99">
 			</div>
 		</div>
 
@@ -86,34 +93,18 @@
 		<div class="card mb-4">
 			<div class="card-header">発売元</div>
 			<div class="card-body">
-				<textarea name="agency" rows="1" class="form-control">{{old('game')}}</textarea>
+				<input type="text" name="agency" class="form-control" value="{{old('agency')}}">
 			</div>
 		</div>
 
 		<div class="card mb-4">
 			<div class="card-header">TOP表示</div>
 			<div class="card-body">
-				@php
-					$items = [
-						[
-							'id' => 1,
-							'name' => '新着タイトル'
-						],
-						[
-							'id' => 2,
-							'name' => '注目タイトル'
-						],
-						[
-							'id' => 3,
-							'name' => 'オススメタイトル'
-						],
-					];
-				@endphp
-				@foreach ($items as $item)
+				@foreach ($features as $feature)
 					<div class="form-check">
-						<input class="form-check-input" name="categories[]" type="checkbox" value="{{ $item['id'] }}" id="category{{ $item['id']}}">
-						<label class="form-check-label" for="category{{ $item['id']}}">
-							{{ $item['name'] }}
+						<input class="form-check-input" name="categories[]" type="checkbox" value="{{ $feature['id'] }}" id="category{{ $feature['id']}}">
+						<label class="form-check-label" for="category{{ $feature['id']}}">
+							{{ $feature['title'] }}
 						</label>
 					</div>
 				@endforeach

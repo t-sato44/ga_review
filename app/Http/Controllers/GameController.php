@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,10 @@ use App\Helpers\Helper;
 
 class GameController extends Controller
 {
-	public function __construct(Game $game)
+	public function __construct(Game $game, Genre $genre)
 	{
 		$this->game = $game;
+		$this->genre = $genre;
 	}
     /**
      * Display a listing of the resource.
@@ -33,7 +35,9 @@ class GameController extends Controller
      */
     public function create()
     {
-		return view('game.create');
+			$features = config('feature');
+      $genres = $this->genre->get();
+      return view('game.create', compact('features', 'genres'));
     }
 
     /**
@@ -52,7 +56,6 @@ class GameController extends Controller
       $game               = new Game();
       $game->title        = $request->input('title');
       $game->release_date = $request->input('release_date');
-      $game->genre        = $request->input('genre');
       $game->players      = $request->input('players');
       $game->offical_url  = $request->input('offical_url');
       $game->agency       = $request->input('agency');
@@ -61,6 +64,7 @@ class GameController extends Controller
       $game->is_recommend = 1;
       $game->save();
       $game->devices()->attach($request->devices);
+      $game->genres()->attach($request->genres);
       return redirect()->route('game.show', $game->id);
     }
 

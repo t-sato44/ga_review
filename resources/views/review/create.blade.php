@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1 class="h5">クチコミ新規登録</h1>
+	<h1>クチコミ新規登録</h1>
 
 	<form action="{{ route('review.store') }}" method="POST">
 		@csrf
