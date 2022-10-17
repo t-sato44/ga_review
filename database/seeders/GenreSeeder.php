@@ -8,25 +8,23 @@ use App\Models\Genre;
 
 class GenreSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Genre::create([
-            'name' => 'RPG',
-        ]);
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Genre::create([
+			'name' => 'RPG',
+		]);
 
-        Genre::create([
-            'name' => 'MMO、シューティング',
-        ]);
+		Genre::create([
+			'name' => 'MMO、シューティング',
+		]);
 
-        Genre::create([
-            'name' => 'パズル',
-        ]);
-
-
-    }
+		Genre::create([
+			'name' => 'パズル',
+		]);
+	}
 }

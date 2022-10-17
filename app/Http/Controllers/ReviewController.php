@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,30 +11,24 @@ use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+	public function __construct(Review $review, Game $game)
+	{
+		$this->review = $review;
+		$this->game = $game;
+	}
 
 	// Reviewページへの表示
-	// public function index()
-	// {
-
-	// 	if(Gate::allows('admin')){
-	// 		// 管理者だけ処理を実行します
-	// 	}
-	// 	if(Gate::denies('read')){
-	// 		// 閲覧者を除いて処理を実行します
-	// 	}
-
-	// 	// この２つの$reviewsと$reviews2はほぼ同じことを行っている
-	// 	$reviews = Review::all();
-	// 	// $reviews2 = DB::table('reviews')->get();
-	// 	// dd($reviews);
-
-	// 	return view('review.index', compact('reviews'));
-	// }
+	public function index()
+	{
+		if(Gate::allows('admin')){
+			// 管理者だけ処理を実行します
+		}
+		if(Gate::denies('read')){
+			// 閲覧者を除いて処理を実行します
+		}
+		$reviews = Review::all();
+		return view('review.index', compact('reviews'));
+	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -42,8 +37,9 @@ class ReviewController extends Controller
 	 */
 	public function create()
 	{
-
-		return view('review.create');
+		$games = $this->game->all();
+		// dd($games);
+		return view('review.create', compact('games'));
 	}
 
 	/**
@@ -58,17 +54,17 @@ class ReviewController extends Controller
 	{
 		$review          = new Review();
 		$review->user_id = Auth::user()->id;
-		$review->game_id = 1;
+		$review->game_id = $request->input('game');
 		$review->graphic = $request->input('graphic');
 		$review->volume  = $request->input('volume');
 		$review->sound   = $request->input('sound');
 		$review->story   = $request->input('story');
 		$review->comfort = $request->input('comfort');
 		$review->score   = $request->input('score');
-
 		$review->review  = $request->input('review');
 		$review->save();
-		return redirect()->route('review.index');
+    $review->device()->attach($request->devices);
+		return redirect()->route('review.show', $review->id);
 	}
 
 	/**
@@ -79,7 +75,9 @@ class ReviewController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$review = $this->review->find($id);
+		$game = $this->game->find($review->game_id);
+		return view('review.show', compact('review', 'game'));
 	}
 
 	/**

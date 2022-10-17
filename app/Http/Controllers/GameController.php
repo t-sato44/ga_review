@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Helper;
 
 class GameController extends Controller
 {
-	public function __construct(Game $game)
+	public function __construct(Game $game, Genre $genre)
 	{
 		$this->game = $game;
+		$this->genre = $genre;
 	}
     /**
      * Display a listing of the resource.
@@ -32,7 +35,9 @@ class GameController extends Controller
      */
     public function create()
     {
-		return view('game.create');
+			$features = config('feature');
+      $genres = $this->genre->get();
+      return view('game.create', compact('features', 'genres'));
     }
 
     /**
@@ -41,23 +46,26 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-	//タイトル情報で入力されたデータを保存
-     public function store(Request $request)
+    //タイトル情報で入力されたデータを保存
+    public function store(Request $request)
     {
-		$game               = new Game();
-//		$review->user_id = Auth::user()->id;
-//		$review->game_id = 1;
-		$game->title        = $request->input('title');
-		$game->release_date = $request->input('release_date');
-		$game->genre        = $request->input('genre');
-		$game->players      = $request->input('players');
-		$game->offical_url  = $request->input('offical_url');
-		$game->agency       = $request->input('agency');
-		$game->is_new       = 1;
-		$game->is_attention = 1;
-		$game->is_recommend = 1;
-		$game->save();
-		return redirect()->route('game.show', $game->id);
+      $validated = $request->validate([
+        'title' => 'required|unique:games|max:255',
+        'description' => 'max:16384',
+      ]);
+      $game               = new Game();
+      $game->title        = $request->input('title');
+      $game->release_date = $request->input('release_date');
+      $game->players      = $request->input('players');
+      $game->offical_url  = $request->input('offical_url');
+      $game->agency       = $request->input('agency');
+      $game->is_new       = 1;
+      $game->is_attention = 1;
+      $game->is_recommend = 1;
+      $game->save();
+      $game->devices()->attach($request->devices);
+      $game->genres()->attach($request->genres);
+      return redirect()->route('game.show', $game->id);
     }
 
     /**
@@ -68,9 +76,20 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        $game = $this->game->find($id);
-        // dd($game);
-		return view('game.show', compact('game'));
+      $game    = $this->game->find($id);
+      $devices = $game->devices;
+      $genres  = $game->genres;
+      $reviews = $game->reviews;
+      $score = Helper::score_avg($reviews);
+      $chart = Helper::chart_avg($reviews);
+      return view('game.show', compact(
+        'game',
+        'devices',
+        'genres',
+        'reviews',
+        'score',
+        'chart'
+      ));
     }
 
     /**

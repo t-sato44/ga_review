@@ -1,8 +1,7 @@
-<canvas id="review_chart_{{$data->id}}"></canvas>
+<canvas id="review_chart_{{$data['id']}}"></canvas>
 <script>
-  const data_{{$data->id}} = {
+  const data_{{$data['id']}} = {
     labels: [
-      'スコア',
       'グラフィック',
       'ボリューム',
       'サウンド',
@@ -12,7 +11,7 @@
     datasets: [
       {
         label: 'データ',
-        data: [{{$data->score}}, {{$data->graphic}}, {{$data->volume}}, {{$data->sound}}, {{$data->story}}, {{$data->comfort}}],
+        data: [{{$data['graphic']}}, {{$data['volume']}}, {{$data['sound']}}, {{$data['story']}}, {{$data['comfort']}}],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgb(255, 99, 132)',
@@ -23,9 +22,9 @@
       },
     ]
   };
-  const config_{{$data->id}} = {
+  const config_{{$data['id']}} = {
     type: 'radar',
-    data: data_{{$data->id}},
+    data: data_{{$data['id']}},
     options: {
       elements: {
         line: {
@@ -35,7 +34,7 @@
       scales: {
         r: {
           min: 0,
-          max: 5,
+          max: 10,
           stepSize: 1,
           fontSize: 10,
           fontColor: "purple",
@@ -46,8 +45,8 @@
       }
     }
   };
-  const review_chart_{{$data->id}} = new Chart(
-    document.getElementById('review_chart_{{$data->id}}'),
-    config_{{$data->id}}
+  const review_chart_{{$data['id']}} = new Chart(
+    document.getElementById('review_chart_{{$data['id']}}'),
+    config_{{$data['id']}}
   );
 </script>

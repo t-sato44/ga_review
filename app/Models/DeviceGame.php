@@ -14,5 +14,5 @@ class DeviceGame extends Model
      *
      * @var string
      */
-    protected $table = 'devices_games';
+    protected $table = 'device_game';
 }

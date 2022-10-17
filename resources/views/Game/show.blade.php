@@ -19,22 +19,90 @@
 
   <div class="tab-content">
 
-    <div id="info" class="tab-pane active">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
+    <div id="info" class="tab-pane pt-3 active">
+      <div class="row">
+        <div class="col-5">
           <div class="card h-100">
-            <x-rader :data="$game" />
+            <x-rader :data="$chart" />
             <div class="card-body">
               <h5 class="card-title">ゲームタイトル: {{ $game->title }}</h5>
               <p class="card-date">リリース日 {{ $game->release_date }}</p>
+              <div>
+                <div class="starsScore" style="--rating: {{ $score }};" aria-label="Rating"></div>
+                <div>{{ $score }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="card">
+            <div class="card-header">デバイス</div>
+            <div class="card-body">
+              @foreach ($devices as $device)
+                <div>{{ $device->name }}</div>
+              @endforeach
+            </div>
+          </div>
+          <div class="card mt-4">
+            <div class="card-header">ジャンル</div>
+            <div class="card-body">
+              @foreach ($genres as $genre)
+                <div>{{ $genre->name }}</div>
+              @endforeach
+            </div>
+          </div>
+          <div class="card mt-4">
+            <div class="card-header">レビュー</div>
+            <div class="card-body">
+              @foreach ($reviews as $k => $review)
+                @if ($k == $reviews->keys()->last())
+                  <div class="card">
+                @else
+                  <div class="card mb-2">
+                @endif
+                    <div class="card-header">
+                      {{ $review->user->name }}
+                    </div>
+                    <div class="card-body">
+                      <div>review: {!! nl2br($review->review) !!}</div>
+                      <div>score: {{ $review->score }}</div>
+                      <div>graphic: {{ $review->graphic }}</div>
+                      <div>volume: {{ $review->volume }}</div>
+                      <div>sound: {{ $review->sound }}</div>
+                      <div>story: {{ $review->story }}</div>
+                      <div>comfort: {{ $review->comfort }}</div>
+                    </div>
+                  </div>
+              @endforeach
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="voice" class="tab-pane">
-      <h2>Voice</h2>
+    <div id="voice" class="tab-pane pt-3">
+      @foreach ($reviews as $k => $review)
+      @if ($k == $reviews->keys()->last())
+        <div class="card">
+      @else
+        <div class="card mb-2">
+      @endif
+          <div class="card-header">
+            {{ $review->user->name }}
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <div class="starsScore" style="--rating: {{ $review->score }};" aria-label="Rating"></div>
+                <div>review: {!! nl2br($review->review) !!}</div>
+              </div>
+              <div class="col-6">
+                <x-rader :data="$review" />
+              </div>
+            </div>
+          </div>
+        </div>
+      @endforeach
     </div>
 
     <div id="image" class="tab-pane">

@@ -8,48 +8,55 @@ use App\Models\Game;
 
 class GameSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Game::create([
-            'title' => 'aaa',
-            'release_date' => 20200102,
-            'genre' => 'アクション',
-            'players' => 'シングルプレイ',
-            'offical_url' => 'ccc.com',
-            'agency' => 'SEGA',
-            'is_new' => 0,
-            'is_attention' => 1,
-            'is_recommend' => 0,
-        ]);
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$now = date('Y-m-d H:i:s');
+		$players = mt_rand(1, 10);
+		Game::create([
+			'title' => 'あつまれ動物の森',
+			'description' => '無人島ではじまる、新生活',
+			'release_date' => $now,
+			'players' => $players,
+			'offical_url' => 'https://www.nintendo.co.jp/switch/acbaa/index.html',
+			'agency' => '任天堂',
+			'is_new' => 0,
+			'is_attention' => 1,
+			'is_recommend' => 0,
+			'created_at' => $now,
+			'updated_at' => $now,
+		]);
 
-        Game::create([
-            'title' => 'aaa',
-            'release_date' => 20200103,
-            'genre' => 'パズル',
-            'players' => 'マルチプレイ',
-            'offical_url' => 'ccc.com',
-            'agency' => 'Nintendo',
-            'is_new' => 0,
-            'is_attention' => 0,
-            'is_recommend' => 1,
-        ]);
+		Game::create([
+			'title' => 'スプラトゥーン3',
+			'description' => '大自然で! 大都会で! さらに広がるナワバリバトル!',
+			'release_date' => $now,
+			'players' => $players,
+			'offical_url' => 'https://store-jp.nintendo.com/list/software/70010000046394.html',
+			'agency' => '任天堂',
+			'is_new' => 1,
+			'is_attention' => 1,
+			'is_recommend' => 1,
+			'created_at' => $now,
+			'updated_at' => $now,
+		]);
 
-        Game::create([
-            'title' => 'aaa',
-            'release_date' => 2022-09-12,
-            'genre' => 'シューティング',
-            'players' => 'マルチプレイ',
-            'offical_url' => 'ccc.com',
-            'agency' => 'ddd',
-            'is_new' => 0,
-            'is_attention' => 1,
-            'is_recommend' => 0,
-        ]);
-
-    }
+		Game::create([
+			'title' => 'ポケットモンスター バイオレット ',
+			'description' => '『ポケットモンスター』シリーズはオープンワールドへ。',
+			'release_date' => $now,
+			'players' => $players,
+			'offical_url' => 'https://www.pokemon.co.jp/ex/sv/ja/',
+			'agency' => '任天堂',
+			'is_new' => 1,
+			'is_attention' => 1,
+			'is_recommend' => 0,
+			'created_at' => $now,
+			'updated_at' => $now,
+		]);
+	}
 }

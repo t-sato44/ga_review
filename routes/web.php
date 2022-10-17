@@ -18,7 +18,8 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 // レビューページ
 Route::get('/review', [Controllers\ReviewController::class, 'index'])->name('review.index');
-Route::get('/review/$review', [Controllers\ReviewController::class, 'show'])->name('review.show');
+Route::get('/review/create', [Controllers\ReviewController::class, 'create'])->name('review.create');
+Route::get('/review/{id}', [Controllers\ReviewController::class, 'show'])->name('review.show');
 
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
