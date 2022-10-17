@@ -2,7 +2,8 @@
 
 @section('content')
 
-<h1 class="text-primary">ゲームタイトル一覧</h1>
+<h1>ゲームタイトル一覧</h1>
+
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @foreach ($games as $game)
