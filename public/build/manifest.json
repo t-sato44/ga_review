@@ -5,11 +5,7 @@
     "isEntry": true
   },
   "resources/css/app.css": {
-<<<<<<< HEAD
-    "file": "assets/app.38b584c0.css",
-=======
     "file": "assets/app.d72ac827.css",
->>>>>>> master
     "src": "resources/css/app.css",
     "isEntry": true
   },
