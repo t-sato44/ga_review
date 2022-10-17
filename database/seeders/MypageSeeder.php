@@ -15,6 +15,7 @@ class MypageSeeder extends Seeder
      */
     public function run()
     {
+		$now = date('Y-m-d H:i:s');
         Mypage::create([
             'user_id' => 1,
             'self_info' => 'こんにちは',
@@ -22,6 +23,8 @@ class MypageSeeder extends Seeder
             'area' => 1,
             'tel' => '090-1111-2222',
             'twitter' => '@ffffff',
+			'created_at' => $now,
+			'updated_at' => $now,
         ]);
 
         Mypage::create([
@@ -31,6 +34,8 @@ class MypageSeeder extends Seeder
             'area' => 5,
             'tel' => '090-3333-4444',
             'twitter' => '@aaaaaa',
+			'created_at' => $now,
+			'updated_at' => $now,
         ]);
     }
 }

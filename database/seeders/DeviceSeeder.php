@@ -24,7 +24,11 @@ class DeviceSeeder extends Seeder
         ]);
 
         Device::create([
-            'name' => 'PS4,PS5,PC',
+            'name' => 'Nintendo Switch',
+        ]);
+
+        Device::create([
+            'name' => 'PC',
         ]);
 
     }

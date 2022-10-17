@@ -2,11 +2,26 @@
 
 @section('content')
 
-	<h1 class="h5">クチコミ新規登録</h1>
+	<h1>クチコミ新規登録</h1>
 
 	<form action="{{ route('review.store') }}" method="POST">
 		@csrf
 
+		<div class="card mb-4">
+			<div class="card-header">ゲームタイトル選択</div>
+			<div class="card-body">
+				@foreach ($games as $k => $v)
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="game" id="game_{{ $v->id }}" value="{{ $v->id }}">
+						<label class="form-check-label" for="game_{{ $v->id }}">{{ $v->title }}</label>
+					</div>
+				@endforeach
+				@error('game')
+					{{ $message }}
+				@enderror
+
+			</div>
+		</div>
 		<div class="card mb-4">
 			<div class="card-header">評価</div>
 			<div class="card-body">

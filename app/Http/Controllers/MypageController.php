@@ -20,6 +20,7 @@ class MypageController extends Controller
 			// 閲覧者を除いて処理を実行します
 		}
 		$user = Auth::user();
+		$reviews = $user->review;
 		$sex = "";
 		$area = "";
 		$twitter = "";
@@ -41,8 +42,17 @@ class MypageController extends Controller
 			$prefectures = config('pref');
 			$area = $prefectures[$mypage->area];
 		}
-
-		return view('mypage.index', compact('user', 'mypage', 'self_info', 'tel', 'sex', 'area', 'twitter', 'genres'));
+		return view('mypage.index', compact(
+			'user',
+			'reviews',
+			'mypage',
+			'self_info',
+			'tel',
+			'sex',
+			'area',
+			'twitter',
+			'genres',
+		));
 	}
 
 	public function update(Request $request)

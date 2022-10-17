@@ -1,5 +1,13 @@
 @import "../bootstrap-5.0.2/bootstrap";
 
+h1 {
+  padding: 0.25em 0.5em;/*上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: transparent;/*背景透明に*/
+  border-left: solid 5px #7db4e6;/*左線*/
+  margin-bottom: 1.5rem;
+}
+
 .navbar-brand {
   img {
     width: 3rem;
@@ -29,7 +37,7 @@
   padding-bottom: 1rem;
 }
 
-// 星の総合評価
+// レビュー登録ページの星評価
 .stars span{
   display: flex;               /* 要素をフレックスボックスにする */
   flex-direction: row-reverse; /* 星を逆順に並べる */
@@ -48,4 +56,22 @@
 .stars label:hover ~ label,
 .stars input[type='radio']:checked ~ label{
   color: #F8C601;              /* 選択された星以降をすべて黄色にする */
+}
+
+// ゲームタイトルページのスコア星
+.starsScore {
+  --star-size: 30px;
+  --star-color: rgb(207, 207, 207);
+  --star-background: #fc0;
+  --percent: calc(var(--rating) / 10 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  line-height: 1;
+  &::before {
+    content: '★★★★★★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
