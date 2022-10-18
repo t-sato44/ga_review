@@ -23,11 +23,15 @@ class Game extends Model
 
   public function devices()
   {
-    return $this->belongsToMany(Device::class)->withTimestamps();;
+    return $this->belongsToMany(Device::class)->withTimestamps();
   }
 
   public function genres()
   {
-    return $this->belongsToMany(Genre::class)->withTimestamps();;
+    return $this->belongsToMany(Genre::class)->withTimestamps();
+  }
+  public function image()
+  {
+    return $this->hasMany(Image::class);
   }
 }

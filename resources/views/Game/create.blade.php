@@ -4,7 +4,7 @@
 
 <h1>タイトル情報登録</h1>
 
-<form action="{{ route('game.store') }}" method="POST">
+<form action="{{ route('game.store') }}" method="POST" enctype="multipart/form-data">
 	@csrf
 
 		<div class="card mb-4">
@@ -108,6 +108,13 @@
 						</label>
 					</div>
 				@endforeach
+			</div>
+		</div>
+
+		<div class="card mb-4">
+			<div class="card-header">画像</div>
+			<div class="card-body">
+				<input type="file" name="image_path">
 			</div>
 		</div>
 

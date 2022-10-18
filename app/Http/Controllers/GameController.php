@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,16 @@ class GameController extends Controller
       $game->save();
       $game->devices()->attach($request->devices);
       $game->genres()->attach($request->genres);
+      $img = $request->file('image_path');
+      if (isset($img)) {
+        $path = $img->store('img','public');
+        if ($path) {
+          Image::create([
+            'game_id' => $game->id,
+            'image_path' => $path,
+          ]);
+        }
+      }
       return redirect()->route('game.show', $game->id);
     }
 
@@ -80,15 +91,17 @@ class GameController extends Controller
       $devices = $game->devices;
       $genres  = $game->genres;
       $reviews = $game->reviews;
-      $score = Helper::score_avg($reviews);
-      $chart = Helper::chart_avg($reviews);
+      $score = count($reviews) > 0 ? Helper::score_avg($reviews) : 0;
+      $chart = count($reviews) > 0 ? Helper::chart_avg($reviews) : [];
+      $images = $game->image;
       return view('game.show', compact(
         'game',
         'devices',
         'genres',
         'reviews',
         'score',
-        'chart'
+        'chart',
+        'images'
       ));
     }
 

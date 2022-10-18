@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    use HasFactory;
+	use HasFactory;
+
+	protected $table = 'images';
+
+	protected $fillable = [
+		'game_id',
+		'image_path',
+	];
+
+	public function game()
+  {
+    return $this->belongsTo(Image::class)->withTimestamps();
+  }
 }
