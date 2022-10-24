@@ -123,4 +123,41 @@
 		</div>
 	</form>
 
+<div id="test">
+
+</div>
+
+	<script>
+// import { createApp } from "vue";
+    new Vue({
+      el: "#test",
+      data() {
+        return {
+          languages_used:[],
+          bodies: [
+            {
+              body: '',
+              language: ''
+            }
+          ]
+        }
+      },
+      mounted(){
+      },
+      methods: {
+        addBody() {
+          this.bodies.push({
+            body: '',
+            language: ''
+          })
+        },
+        deleteBody(index) {
+          if (this.bodies.length > 1) {
+            this.bodies.splice(index, 1)
+          }
+        },
+      }
+    });
+  </script>
+
 @endsection
