@@ -23,8 +23,12 @@
       <div class="row">
         <div class="col-5">
           <div class="card h-100">
-            <x-rader :data="$chart" />
             <div class="card-body">
+              @if ($chart)
+                <x-rader :data="$chart" />
+              @else
+                <h5 class="text-danger">レビューデータがありません</h5>
+              @endif
               <h5 class="card-title">ゲームタイトル: {{ $game->title }}</h5>
               <p class="card-date">リリース日 {{ $game->release_date }}</p>
               <div>
@@ -107,6 +111,11 @@
 
     <div id="image" class="tab-pane">
       <h2>Image</h2>
+      <div>
+        @foreach ($images as $image)
+          <img src="{{ Storage::url($image->image_path) }}" width="25%">
+        @endforeach
+      </div>
     </div>
   </div>
 

@@ -4,7 +4,7 @@
 
 <h1>タイトル情報登録</h1>
 
-<form action="{{ route('game.store') }}" method="POST">
+<form action="{{ route('game.store') }}" method="POST" enctype="multipart/form-data">
 	@csrf
 
 		<div class="card mb-4">
@@ -111,9 +111,53 @@
 			</div>
 		</div>
 
+		<div class="card mb-4">
+			<div class="card-header">画像</div>
+			<div class="card-body">
+				<input type="file" name="image_path">
+			</div>
+		</div>
+
 		<div class="text-center">
 			<button type="submit" class="btn btn-primary">送信</button>
 		</div>
 	</form>
+
+<div id="test">
+
+</div>
+
+	<script>
+// import { createApp } from "vue";
+    new Vue({
+      el: "#test",
+      data() {
+        return {
+          languages_used:[],
+          bodies: [
+            {
+              body: '',
+              language: ''
+            }
+          ]
+        }
+      },
+      mounted(){
+      },
+      methods: {
+        addBody() {
+          this.bodies.push({
+            body: '',
+            language: ''
+          })
+        },
+        deleteBody(index) {
+          if (this.bodies.length > 1) {
+            this.bodies.splice(index, 1)
+          }
+        },
+      }
+    });
+  </script>
 
 @endsection
