@@ -66,7 +66,7 @@
           <input id="nickname" class="form-control" type="text" name="nickname" :value="old('nickname')" required>
         </div>
 
-        <!-- level -->
+        {{-- <!-- level -->
         <div class="mb-4">
           <label for="level" class="form-label"><strong>{{ __('ゲームレベル') }}</strong></label>
           @for ($i = 1; $i <= 3; $i++)
@@ -77,7 +77,7 @@
             </div>
           @endfor
         </div>
-
+ --}}
         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
           <div class="mt-4">
             <label for="terms">

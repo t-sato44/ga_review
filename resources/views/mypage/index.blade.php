@@ -70,12 +70,12 @@
 					</div>
 				</div>
 
-				<div class="card mb-3">
+				{{-- <div class="card mb-3">
 					<div class="card-header">ゲームレベル</div>
 					<div class="card-body">
 						<p class="card-text">{{ $user->level }}</p>
 					</div>
-				</div>
+				</div> --}}
 
 				<div class="card mb-3">
 					<div class="card-header">Twitter設定</div>

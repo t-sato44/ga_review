@@ -26,6 +26,7 @@ class ReviewSeeder extends Seeder
 			'sound' => 10,
 			'story' => 7,
 			'comfort' => 3,
+			'playtime' => 1,
 			'created_at' => $now,
 			'updated_at' => $now,
 		]);
@@ -39,6 +40,7 @@ class ReviewSeeder extends Seeder
 			'sound' => 5,
 			'story' => 4,
 			'comfort' => 1,
+			'playtime' => 2,
 			'created_at' => $now,
 			'updated_at' => $now,
 		]);
@@ -52,6 +54,7 @@ class ReviewSeeder extends Seeder
 			'sound' => 7,
 			'story' => 6,
 			'comfort' => 10,
+			'playtime' => 3,
 			'created_at' => $now,
 			'updated_at' => $now,
 		]);

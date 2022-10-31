@@ -16,11 +16,15 @@ class DeviceSeeder extends Seeder
     public function run()
     {
         Device::create([
-            'name' => 'PS4',
+            'name' => 'Nintendo 3DS',
         ]);
 
         Device::create([
-            'name' => 'PS5',
+            'name' => 'PlayStation Vita',
+        ]);
+
+        Device::create([
+            'name' => 'Nintendo Switch Lite',
         ]);
 
         Device::create([
@@ -28,7 +32,31 @@ class DeviceSeeder extends Seeder
         ]);
 
         Device::create([
+            'name' => 'PlayStation 4',
+        ]);
+
+        Device::create([
+            'name' => 'PlayStation 5',
+        ]);
+
+        Device::create([
+            'name' => 'Xbox one',
+        ]);
+
+        Device::create([
+            'name' => 'Xbox Series X',
+        ]);
+
+        Device::create([
             'name' => 'PC',
+        ]);
+
+        Device::create([
+            'name' => 'PSVR',
+        ]);
+
+        Device::create([
+            'name' => 'Meta Quest',
         ]);
 
     }
