@@ -17,13 +17,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('review');
-            $table->integer('score')->unsigned()->default(0);
             $table->integer('graphic');
             $table->integer('volume');
             $table->integer('sound');
             $table->integer('story');
             $table->integer('comfort');
+            $table->integer('score')->unsigned()->default(0);
+            $table->integer('playtime');
+            $table->string('review');
+
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games');

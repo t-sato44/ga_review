@@ -95,7 +95,7 @@
 					<input type="text" class="form-control" id="nickname" name="nickname" value="{{ $user->nickname }}">
 				@endif
 			</div>
-			<div class="py-3">
+			{{-- <div class="py-3">
 				<label class="form-label">ゲームレベル</label>
 				@if ( old('level') )
 					<div class="form-check">
@@ -124,7 +124,7 @@
 						<label class="form-check-label" for="level3">3</label>
 					</div>
 				@endif
-			</div>
+			</div> --}}
 			<div class="py-3">
 				<label for="twitter" class="form-label">Twitter設定</label>
 				<div class="d-flex align-items-center">

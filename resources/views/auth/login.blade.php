@@ -21,30 +21,30 @@
 			<form method="POST" action="{{ route('login') }}">
 				@csrf
 				<div>
-					<label for="email" class="form-label">Email</label>
+					<label for="email" class="form-label">メールアドレス</label>
 					<input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus />
 				</div>
 
 				<div class="mt-4">
-					<label for="password" class="form-label">Password</label>
+					<label for="password" class="form-label">パスワード</label>
 					<input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
 				</div>
 
 				<div class="mt-4">
-					<label for="remember_me" class="form-label">remember</label>
+					<label for="remember_me" class="form-label">パスワード保存</label>
 					<div class="list-group-item">
 						<input id="remember_me" name="remember" class="form-check-input me-1" type="checkbox">
-						<span class="">Remember me</span>
+						<span class="">パスワードを保存する</span>
 					</div>
 				</div>
 
 				<div class="mt-4 d-flex align-items-center">
 					@if (Route::has('password.request'))
 						<a class="" href="{{ route('password.request') }}">
-							Forgot your password?
+							パスワードを忘れた方はこちら
 						</a>
 					@endif
-					<button type="submit" class="btn btn-primary ms-auto">Logi in</button>
+					<button type="submit" class="btn btn-primary ms-auto">ログイン</button>
 				</div>
 			</form>
 		</div>

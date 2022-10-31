@@ -28,19 +28,47 @@
 					$items = [
 						[
 							'id' => 1,
-							'name' => 'Nintendo Switch'
+							'name' => 'Nintendo 3DS'
 						],
 						[
 							'id' => 2,
-							'name' => 'PlayStation4'
+							'name' => 'PlayStation Vita'
 						],
 						[
 							'id' => 3,
-							'name' => 'PlayStation5'
+							'name' => 'Nintendo Switch Lite'
 						],
 						[
 							'id' => 4,
+							'name' => 'Nintendo Switch'
+						],
+						[
+							'id' => 5,
+							'name' => 'PlayStation 4'
+						],
+						[
+							'id' => 6,
+							'name' => 'PlayStation 5'
+						],
+						[
+							'id' => 7,
+							'name' => 'Xbox One'
+						],
+						[
+							'id' => 8,
+							'name' => 'Xbox Series X'
+						],
+						[
+							'id' => 9,
 							'name' => 'PC'
+						],
+						[
+							'id' => 10,
+							'name' => 'PSVR'
+						],
+						[
+							'id' => 11,
+							'name' => 'Meta Quest'
 						],
 					];
 				@endphp

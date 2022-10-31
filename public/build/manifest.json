@@ -1,11 +1,15 @@
 {
   "resources/js/app.js": {
+<<<<<<< HEAD
     "file": "assets/app.877e9595.js",
+=======
+    "file": "assets/app.cd4a5888.js",
+>>>>>>> d45213ac10daca310036f90c1035e6feb15817e4
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.b781ce35.css",
+    "file": "assets/app.d72ac827.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
