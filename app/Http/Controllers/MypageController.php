@@ -66,7 +66,6 @@ class MypageController extends Controller
 			'area'        => 'nullable|between:1,47',
 			'tel'         => 'nullable|numeric',
 			'nickname'    => 'required|max:20',
-			'level'       => 'required|between:1,3',
 			'twitter'     => 'nullable|max:50',
 			'genre'       => 'nullable|array',
 		]);
@@ -75,7 +74,6 @@ class MypageController extends Controller
 		$user->name_kana  = $request->name_kana;
 		$user->birth_date = $request->birth_date;
 		$user->nickname   = $request->nickname;
-		$user->level      = $request->level;
 		$user->save();
 		$mypage = Auth::user()->mypage;
 		if ($mypage === null) {

@@ -61,6 +61,7 @@ class ReviewController extends Controller
 		$review->story   = $request->input('story');
 		$review->comfort = $request->input('comfort');
 		$review->score   = $request->input('score');
+		$review->playtime= $request->input('playtime');
 		$review->review  = $request->input('review');
 		$review->save();
     $review->device()->attach($request->devices);
