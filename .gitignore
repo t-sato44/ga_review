@@ -1,9 +1,16 @@
 #/node_modules
 #/public/build
+<<<<<<< HEAD
 #/public/hot
 #/public/storage
 #/storage/*.key
 #/vendor
+=======
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+>>>>>>> caf878a0bdc880400da4219686fa0a3db83c935e
 .env
 .env.backup
 .phpunit.result.cache
