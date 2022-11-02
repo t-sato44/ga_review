@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if (session('status'))
+  <div class="text-blue-400 ml-auto">
+    {{ session('status') }}
+  </div>
+@endif
+
 <h1 class="text-primary">{{ $game->title }}</h1>
 <div class="container">
 
@@ -35,6 +41,9 @@
                 <div class="starsScore" style="--rating: {{ $score }};" aria-label="Rating"></div>
                 <div>{{ $score }}</div>
               </div>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="{{ route('game.edit', $game->id) }}">編集</a>
             </div>
           </div>
         </div>

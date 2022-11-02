@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\Device;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -13,10 +14,11 @@ use App\Helpers\Helper;
 
 class GameController extends Controller
 {
-	public function __construct(Game $game, Genre $genre)
+	public function __construct(Game $game, Genre $genre, Device $device)
 	{
-		$this->game = $game;
-		$this->genre = $genre;
+		$this->game    = $game;
+		$this->genre   = $genre;
+    $this->device  = $device;
 	}
     /**
      * Display a listing of the resource.
@@ -113,7 +115,26 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+      $game       = $this->game->find($id);
+      $devices    = $game->devices;
+      $device_all = $this->device->get();
+      $genres     = $game->genres;
+      $genre_all  = $this->genre->get();
+      $reviews    = $game->reviews;
+      $score      = count($reviews) > 0 ? Helper::score_avg($reviews) : 0;
+      $chart      = count($reviews) > 0 ? Helper::chart_avg($reviews) : [];
+      $images     = $game->image;
+      return view('game.edit', compact(
+        'game',
+        'devices',
+        'device_all',
+        'genres',
+        'genre_all',
+        'reviews',
+        'score',
+        'chart',
+        'images'
+      ));
     }
 
     /**
@@ -125,7 +146,16 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $validated = $request->validate([
+        'title' => 'required|unique:games|max:255',
+        'description' => 'max:16384',
+      ]);
+      $game = $this->game::find($id);
+      // dd($game);
+      $game->title = $request->title;
+      $game->description = $request->description;
+      $game->save();
+      return redirect()->route('game.show', $id)->with('status', '編集完了');
     }
 
     /**
