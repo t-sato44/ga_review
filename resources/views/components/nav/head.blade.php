@@ -13,7 +13,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownReview" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            レビュー7
+            レビュー45
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownReview">
             <li><a class="dropdown-item" href="{{ route('review.index') }}">レビュー一覧</a></li>
