@@ -13,8 +13,8 @@
     <title>{{ config('app.name') }}</title>
   @endif
   <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('img/favicon-16x16.png') }}">
+  {{-- @vite('resources/css/app.css') --}}
   @vite('resources/css/style.scss')
-  @vite('resources/css/app.css')
   @vite('resources/js/app.js')
   @livewireStyles
   @hasSection('title')
