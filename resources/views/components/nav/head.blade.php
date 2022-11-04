@@ -13,11 +13,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="dropdownReview" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-<<<<<<< HEAD
             レビュー45
-=======
-            レビュー14
->>>>>>> c98f202fcb45904c5c5a5ae2b5a60d3aa1b19c51
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownReview">
             <li><a class="dropdown-item" href="{{ route('review.index') }}">レビュー一覧</a></li>
