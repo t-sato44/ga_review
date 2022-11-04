@@ -6,10 +6,17 @@
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
 <<<<<<< HEAD
+<<<<<<< HEAD
         'reference' => '489ccdbf9d7e52b81f10b0b2e976b8796fd40cd0',
 =======
         'reference' => 'dfc4177e19597d774e24c2f81e0830a48a8fc9e0',
 >>>>>>> d45213ac10daca310036f90c1035e6feb15817e4
+=======
+        'reference' => '81199f83704c74e5bf4713488b1b6fee212afaa8',
+=======
+        'reference' => 'dfc4177e19597d774e24c2f81e0830a48a8fc9e0',
+>>>>>>> staging
+>>>>>>> caf878a0bdc880400da4219686fa0a3db83c935e
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -474,10 +481,17 @@
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
 <<<<<<< HEAD
+<<<<<<< HEAD
             'reference' => '489ccdbf9d7e52b81f10b0b2e976b8796fd40cd0',
 =======
             'reference' => 'dfc4177e19597d774e24c2f81e0830a48a8fc9e0',
 >>>>>>> d45213ac10daca310036f90c1035e6feb15817e4
+=======
+            'reference' => '81199f83704c74e5bf4713488b1b6fee212afaa8',
+=======
+            'reference' => 'dfc4177e19597d774e24c2f81e0830a48a8fc9e0',
+>>>>>>> staging
+>>>>>>> caf878a0bdc880400da4219686fa0a3db83c935e
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

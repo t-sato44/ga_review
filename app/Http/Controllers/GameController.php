@@ -38,9 +38,10 @@ class GameController extends Controller
      */
     public function create()
     {
-			$features = config('feature');
-      $genres = $this->genre->get();
-      return view('game.create', compact('features', 'genres'));
+      $device_all = $this->device->get();
+			$features   = config('feature');
+      $genres     = $this->genre->get();
+      return view('game.create', compact('device_all', 'features', 'genres'));
     }
 
     /**
@@ -68,9 +69,12 @@ class GameController extends Controller
       $game->save();
       $game->devices()->attach($request->devices);
       $game->genres()->attach($request->genres);
-      $img = $request->file('image_path');
+      $img = $request->file('image');
+      $img_name = $img->getClientOriginalName();
+      // dd($img_name);
       if (isset($img)) {
-        $path = $img->store('img','public');
+        $path = $img->move('img',$img_name);
+        // $path = $img->store('img','public');
         if ($path) {
           Image::create([
             'game_id' => $game->id,

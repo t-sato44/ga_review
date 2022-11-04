@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Game;
+use App\Models\Device;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,10 +12,11 @@ use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
-	public function __construct(Review $review, Game $game)
+	public function __construct(Review $review, Game $game, Device $device)
 	{
 		$this->review = $review;
 		$this->game = $game;
+    $this->device  = $device;
 	}
 
 	// Reviewページへの表示
@@ -37,9 +39,11 @@ class ReviewController extends Controller
 	 */
 	public function create()
 	{
-		$games = $this->game->all();
+		$device_all = $this->device->get();
+		$games      = $this->game->all();
+		$playtimes  = config('playtime');
 		// dd($games);
-		return view('review.create', compact('games'));
+		return view('review.create', compact('device_all', 'games', 'playtimes'));
 	}
 
 	/**
@@ -52,6 +56,7 @@ class ReviewController extends Controller
 	//レビューページで入力されたデータを保存
 	public function store(Request $request)
 	{
+		dd($request->input('score'));
 		$review          = new Review();
 		$review->user_id = Auth::user()->id;
 		$review->game_id = $request->input('game');
