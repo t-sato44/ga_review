@@ -49,6 +49,12 @@
               <div class="starsScore" style="--rating: {{ $review->score }};" aria-label="Rating"></div>
               <div>{{ $review->review }}</div>
               <div>{{ $review->created_at }}</div>
+              @if (count($review->device) > 0)
+                <h6 class="mt-4">使用デバイス</h6>
+                @foreach ($review->device as $device)
+                  <div>{{ $device->name }}</div>
+                @endforeach
+              @endif
             </div>
           </div>
         </div>

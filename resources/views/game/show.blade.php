@@ -88,6 +88,12 @@
                       <div>sound: {{ $review->sound }}</div>
                       <div>story: {{ $review->story }}</div>
                       <div>comfort: {{ $review->comfort }}</div>
+                      @if (count($review->device) > 0)
+                        <h6 class="mt-4">使用デバイス</h6>
+                        @foreach ($review->device as $device)
+                          <div>{{ $device->name }}</div>
+                        @endforeach
+                      @endif
                     </div>
                   </div>
               @endforeach
@@ -133,7 +139,6 @@
       @endif
     </div>
   </div>
-
 
 </div>
 

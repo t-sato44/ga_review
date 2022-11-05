@@ -71,7 +71,7 @@
 					<div class="form-check">
 						<input
 							class="form-check-input"
-							name="devices"
+							name="devices[]"
 							type="checkbox"
 							value="{{ $device->id }}"
 							id="device_{{ $device->id }}"
