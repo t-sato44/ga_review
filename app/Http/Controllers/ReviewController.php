@@ -37,13 +37,12 @@ class ReviewController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
+		$game = $this->game->find($request->game_id);
 		$device_all = $this->device->get();
-		$games      = $this->game->all();
 		$playtimes  = config('playtime');
-		// dd($games);
-		return view('review.create', compact('device_all', 'games', 'playtimes'));
+		return view('review.create', compact('game', 'device_all', 'playtimes'));
 	}
 
 	/**
@@ -56,7 +55,6 @@ class ReviewController extends Controller
 	//レビューページで入力されたデータを保存
 	public function store(Request $request)
 	{
-		dd($request->input('score'));
 		$review          = new Review();
 		$review->user_id = Auth::user()->id;
 		$review->game_id = $request->input('game');
@@ -69,7 +67,7 @@ class ReviewController extends Controller
 		$review->playtime= $request->input('playtime');
 		$review->review  = $request->input('review');
 		$review->save();
-    $review->device()->attach($request->devices);
+    $review->device()->sync($request->devices);
 		return redirect()->route('review.show', $review->id);
 	}
 

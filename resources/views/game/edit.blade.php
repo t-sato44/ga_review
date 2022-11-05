@@ -141,56 +141,104 @@
 		<div class="card mb-4">
 			<div class="card-header">TOP表示</div>
 			<div class="card-body">
+				@foreach ($feature_all as $k => $feature)
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							name="categories[]"
+							type="checkbox"
+							value="{{ $feature['id'] }}"
+							id="category{{ $feature['id'] }}"
+							{{ $features[$k] ? 'checked' : '' }}
+						>
+						<label class="form-check-label" for="category{{ $feature['id'] }}">
+							{{ $feature['title'] }}
+						</label>
+					</div>
+				@endforeach
 			</div>
 		</div>
 
 		<div class="card mb-4">
 			<div class="card-header">画像</div>
 			<div class="card-body">
-				<input type="file" name="image_path">
+				@if ($game->image)
+					<h5 class="mb-4">削除</h5>
+					<div class="d-flex">
+						@foreach ($game->image as $image)
+							@if ($game->image->last() == $image)
+								<div class="form-check pe-4 ms-4">
+							@else
+								<div class="form-check border-end pe-4 ms-4">
+							@endif
+								<input
+									class="form-check-input"
+									name="del_images[]"
+									type="checkbox"
+									value="{{ $image->id }}"
+									id="del_image_{{ $image->id }}"
+								>
+								<label class="form-check-label" for="del_image_{{ $image->id }}">
+									<img src="{{ Storage::url($image->image_path) }}" width="100">
+								</label>
+							</div>
+						@endforeach
+					</div>
+				@endif
+				<h5 class="my-4">追加</h5>
+				<div id="game_edit">
+					<input
+						v-for="img in img_inputs"
+						type="file"
+						class="mb-3 me-3"
+						name="image[]"
+					>
+					<div class="d-flex">
+						<input
+							type="button"
+							@click="addImage(e)"
+							value="追加"
+							class="me-4 btn btn-dark"
+						>
+						<input
+							type="button"
+							@click="deleteImage()"
+							value="削除"
+							class="btn btn-secondary"
+						>
+					</div>
+				</div>
 			</div>
 		</div>
-
 		<div class="text-center">
 			<button type="submit" class="btn btn-primary">編集する</button>
 		</div>
 	</form>
 
-<div id="test">
-
-</div>
-
+	<script src="https://unpkg.com/vue@next"></script>
 	<script>
-// import { createApp } from "vue";
-    new Vue({
-      el: "#test",
-      data() {
-        return {
-          languages_used:[],
-          bodies: [
-            {
-              body: '',
-              language: ''
-            }
-          ]
-        }
-      },
-      mounted(){
-      },
-      methods: {
-        addBody() {
-          this.bodies.push({
-            body: '',
-            language: ''
-          })
-        },
-        deleteBody(index) {
-          if (this.bodies.length > 1) {
-            this.bodies.splice(index, 1)
-          }
-        },
-      }
-    });
-  </script>
+		const game_edit = Vue.createApp({
+			data() {
+				return {
+					img_inputs: [true]
+				}
+			},
+			mounted(){
+				// console.log("mounted");
+			},
+			methods: {
+				addImage() {
+					this.img_inputs.push(true)
+					console.log(this.img_inputs.length)
+				},
+				deleteImage() {
+					if (this.img_inputs.length > 1) {
+						this.img_inputs.splice(-1)
+					}
+				},
+			}
+		});
+		game_edit.mount('#game_edit')
+	</script>
 
 @endsection

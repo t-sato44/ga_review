@@ -2,6 +2,19 @@
 
 @section('content')
 
+@if ($errors->any())
+	<div class="has-background-danger">
+		<p>
+			<span class="has-text-weight-bold">エラー！</span> 入力内容に問題がありました。
+		</p>
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+
 <h1>ゲームタイトル情報登録</h1>
 
 <form action="{{ route('game.store') }}" method="POST" enctype="multipart/form-data">
@@ -142,7 +155,28 @@
 		<div class="card mb-4">
 			<div class="card-header">画像</div>
 			<div class="card-body">
-				<input type="file" name="image">
+				<div id="game_edit">
+					<input
+						v-for="img in img_inputs"
+						type="file"
+						class="mb-3 me-3"
+						name="image[]"
+					>
+					<div class="d-flex">
+						<input
+							type="button"
+							@click="addImage(e)"
+							value="追加"
+							class="me-4 btn btn-dark"
+						>
+						<input
+							type="button"
+							@click="deleteImage()"
+							value="削除"
+							class="btn btn-secondary"
+						>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -152,41 +186,30 @@
 
 	</form>
 
-<div id="test">
-
-</div>
-
+	<script src="https://unpkg.com/vue@next"></script>
 	<script>
-// import { createApp } from "vue";
-    new Vue({
-      el: "#test",
-      data() {
-        return {
-          languages_used:[],
-          bodies: [
-            {
-              body: '',
-              language: ''
-            }
-          ]
-        }
-      },
-      mounted(){
-      },
-      methods: {
-        addBody() {
-          this.bodies.push({
-            body: '',
-            language: ''
-          })
-        },
-        deleteBody(index) {
-          if (this.bodies.length > 1) {
-            this.bodies.splice(index, 1)
-          }
-        },
-      }
-    });
-  </script>
+		const game_edit = Vue.createApp({
+			data() {
+				return {
+					img_inputs: [true]
+				}
+			},
+			mounted(){
+				// console.log("mounted");
+			},
+			methods: {
+				addImage() {
+					this.img_inputs.push(true)
+					console.log(this.img_inputs.length)
+				},
+				deleteImage() {
+					if (this.img_inputs.length > 1) {
+						this.img_inputs.splice(-1)
+					}
+				},
+			}
+		});
+		game_edit.mount('#game_edit')
+	</script>
 
 @endsection

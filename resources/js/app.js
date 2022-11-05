@@ -6,10 +6,7 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import { createApp } from "vue";
+// import { createApp } from "vue";
 
-// const app = createApp();
 
-// console.log(app.version);
-
-// app.mount("#app");
+// console.log(game_edit.version);

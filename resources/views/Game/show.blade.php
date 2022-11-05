@@ -3,12 +3,16 @@
 @section('content')
 
 @if (session('status'))
-  <div class="text-blue-400 ml-auto">
+  <div class="alert alert-primary text-center">
     {{ session('status') }}
   </div>
 @endif
 
-<h1 class="text-primary">{{ $game->title }}</h1>
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="text-primary">{{ $game->title }}</h1>
+  <a class="btn btn-warning" href="{{ route('review.create', ['game_id' => $game->id]) }}">口コミ投稿する</a>
+</div>
+
 <div class="container">
 
   <ul class="nav nav-tabs">
@@ -120,11 +124,13 @@
 
     <div id="image" class="tab-pane">
       <h2>Image</h2>
-      <div>
-        @foreach ($images as $image)
-          <img src="{{ Storage::url($image->image_path) }}" width="25%">
-        @endforeach
-      </div>
+      @if ($images)
+        <div>
+          @foreach ($images as $image)
+            <img src="{{ Storage::url($image->image_path) }}" width="100">
+          @endforeach
+        </div>
+      @endif
     </div>
   </div>
 

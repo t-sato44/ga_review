@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class GameController extends Controller
 {
@@ -59,30 +61,31 @@ class GameController extends Controller
       ]);
       $game               = new Game();
       $game->title        = $request->input('title');
+      $game->description  = $request->input('description');
       $game->release_date = $request->input('release_date');
       $game->players      = $request->input('players');
       $game->offical_url  = $request->input('offical_url');
       $game->agency       = $request->input('agency');
-      $game->is_new       = 1;
-      $game->is_attention = 1;
-      $game->is_recommend = 1;
+      $game->is_new       = in_array(1, $request->input('categories'));
+      $game->is_attention = in_array(2, $request->input('categories'));
+      $game->is_recommend = in_array(3, $request->input('categories'));
       $game->save();
-      $game->devices()->attach($request->devices);
-      $game->genres()->attach($request->genres);
-      $img = $request->file('image');
-      $img_name = $img->getClientOriginalName();
-      // dd($img_name);
-      if (isset($img)) {
-        $path = $img->move('img',$img_name);
-        // $path = $img->store('img','public');
-        if ($path) {
-          Image::create([
-            'game_id' => $game->id,
-            'image_path' => $path,
-          ]);
+      $game->devices()->sync($request->devices);
+      $game->genres()->sync($request->genres);
+      $imgs = $request->file('image');
+      if (isset($imgs)) {
+        foreach ($imgs as $img) {
+          $img_name = $img->getClientOriginalName();
+          $path = $img->storeAs('public', $img_name);
+          if ($path) {
+            Image::create([
+              'game_id' => $game->id,
+              'image_path' => $path,
+            ]);
+          }
         }
       }
-      return redirect()->route('game.show', $game->id);
+      return redirect()->route('game.show', $game->id)->with('status', '登録完了');
     }
 
     /**
@@ -100,6 +103,7 @@ class GameController extends Controller
       $score = count($reviews) > 0 ? Helper::score_avg($reviews) : 0;
       $chart = count($reviews) > 0 ? Helper::chart_avg($reviews) : [];
       $images = $game->image;
+      // dd($images);
       return view('game.show', compact(
         'game',
         'devices',
@@ -119,21 +123,25 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-      $game       = $this->game->find($id);
-      $devices    = $game->devices;
-      $device_all = $this->device->get();
-      $genres     = $game->genres;
-      $genre_all  = $this->genre->get();
-      $reviews    = $game->reviews;
-      $score      = count($reviews) > 0 ? Helper::score_avg($reviews) : 0;
-      $chart      = count($reviews) > 0 ? Helper::chart_avg($reviews) : [];
-      $images     = $game->image;
+      $game         = $this->game->find($id);
+      $devices      = $game->devices;
+      $device_all   = $this->device->get();
+      $genres       = $game->genres;
+      $genre_all    = $this->genre->get();
+      $features     = [$game->is_new, $game->is_attention, $game->is_recommend];
+			$feature_all = config('feature');
+      $reviews      = $game->reviews;
+      $score        = count($reviews) > 0 ? Helper::score_avg($reviews) : 0;
+      $chart        = count($reviews) > 0 ? Helper::chart_avg($reviews) : [];
+      $images       = $game->image;
       return view('game.edit', compact(
         'game',
         'devices',
         'device_all',
         'genres',
         'genre_all',
+        'features',
+        'feature_all',
         'reviews',
         'score',
         'chart',
@@ -151,14 +159,46 @@ class GameController extends Controller
     public function update(Request $request, $id)
     {
       $validated = $request->validate([
-        'title' => 'required|unique:games|max:255',
+        'title' => [
+          'required',
+          'max:255',
+          Rule::unique('games')->ignore($id)
+        ],
         'description' => 'max:16384',
       ]);
-      $game = $this->game::find($id);
-      // dd($game);
-      $game->title = $request->title;
-      $game->description = $request->description;
+      $game               = $this->game::find($id);
+      $game->title        = $request->input('title');
+      $game->description  = $request->input('description');
+      $game->release_date = $request->input('release_date');
+      $game->players      = $request->input('players');
+      $game->offical_url  = $request->input('offical_url');
+      $game->agency       = $request->input('agency');
+      $game->is_new       = in_array(1, $request->input('categories'));
+      $game->is_attention = in_array(2, $request->input('categories'));
+      $game->is_recommend = in_array(3, $request->input('categories'));
       $game->save();
+      $game->devices()->sync($request->input('devices'));
+      $game->genres()->sync($request->input('genres'));
+      if ($request->input('del_images')) {
+        foreach ($request->input('del_images') as $del_id) {
+          $del_path = Image::find($del_id)->image_path;
+          Image::destroy($del_id);
+          Storage::delete($del_path);
+        }
+      }
+      $imgs = $request->file('image');
+      if (isset($imgs)) {
+        foreach ($imgs as $img) {
+          $img_name = $img->getClientOriginalName();
+          $path = $img->storeAs('public', $img_name);
+          if ($path) {
+            Image::create([
+              'game_id' => $game->id,
+              'image_path' => $path,
+            ]);
+          }
+        }
+      }
       return redirect()->route('game.show', $id)->with('status', '編集完了');
     }
 
