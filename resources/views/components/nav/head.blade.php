@@ -17,7 +17,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownReview">
             <li><a class="dropdown-item" href="{{ route('review.index') }}">レビュー一覧</a></li>
-            <li><a class="dropdown-item" href="{{ route('review.create') }}">レビュー登録</a></li>
+            {{-- <li><a class="dropdown-item" href="{{ route('review.create') }}">レビュー登録</a></li> --}}
           </ul>
         </li>
         <li class="nav-item dropdown">
