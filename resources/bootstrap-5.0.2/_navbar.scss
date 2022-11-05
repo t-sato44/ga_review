@@ -20,10 +20,10 @@
   flex-wrap: wrap; // allow us to do the line break for collapsing content
   align-items: center;
   justify-content: space-between; // space out brand from logo
-  padding-top: $navbar-padding-y;
-  padding-right: $navbar-padding-x; // default: null
-  padding-bottom: $navbar-padding-y;
-  padding-left: $navbar-padding-x; // default: null
+  // padding-top: $navbar-padding-y;
+  // padding-right: $navbar-padding-x; // default: null
+  // padding-bottom: $navbar-padding-y;
+  // padding-left: $navbar-padding-x; // default: null
   @include gradient-bg();
 
   // Because flex properties aren't inherited, we need to redeclare these first
@@ -217,11 +217,13 @@
 
   .navbar-nav {
     .nav-link {
+      box-sizing: border-box;
       color: $navbar-light-color;
-
-      &:hover,
-      &:focus {
-        color: $navbar-light-hover-color;
+      &:hover {
+        color: $primary;
+        margin-bottom: -3px;
+        border-bottom: 3px solid $primary;
+        // color: $navbar-light-hover-color;
       }
 
       &.disabled {

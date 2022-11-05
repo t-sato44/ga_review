@@ -2,7 +2,11 @@
 
 @section('content')
 
-<h1>レビュー一覧</h1>
+<x-heading.h1
+  title="レビュー一覧"
+  subTitle="Review List"
+/>
+
 <div class="container">
   <div class="row row-cols-2 row-cols-md-4 g-4">
     @foreach ($reviews as $review)

@@ -2,7 +2,11 @@
 
 @section('content')
 
-<h1>ゲームタイトル一覧</h1>
+
+<x-heading.h1
+  title="ゲームタイトル一覧"
+  subTitle="Game List"
+/>
 
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-4">

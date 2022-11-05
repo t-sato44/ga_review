@@ -13,6 +13,7 @@
     <title>{{ config('app.name') }}</title>
   @endif
   <link rel="icon" type="image/png" sizes="16x16"  href="{{ asset('img/favicon-16x16.png') }}">
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> --}}
   {{-- @vite('resources/css/app.css') --}}
   @vite('resources/css/style.scss')
   @vite('resources/js/app.js')

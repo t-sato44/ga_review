@@ -1,16 +1,20 @@
 @import "../bootstrap-5.0.2/bootstrap";
+@import "../icons-1.8.0/font/bootstrap-icons.css";
 
 h1 {
-  padding: 0.25em 0.5em;/*上下 左右の余白*/
-  color: #5248df;/*文字色*/
-  background: transparent;/*背景透明に*/
-  border-left: solid 5px #7db4e6;/*左線*/
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid $primary;
+  padding-bottom: 5px;
+  margin-bottom: -1px;
 }
 
 .navbar-brand {
+  background-color: $primary;
+  width: 7rem;
+  text-align: center;
   img {
     width: 3rem;
+    align-items: center;
   }
 }
 .logo-register{
@@ -73,5 +77,45 @@ h1 {
     background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+}
+
+.carousel-item {
+  img {
+    object-fit: cover;
+    height: 520px;
+    width: 100%;
+  }
+}
+
+.menu-sidebar {
+  ul {
+    list-style-type: none;
+    li {
+      border: 2px rgb(207, 207, 207) solid;
+      padding: 0.5rem;
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+      a, button {
+        display: flex;
+        align-items: center;
+        &:before {
+          content: " \F136";
+          font-family: bootstrap-icons;
+          font-weight: 400;
+          font-size: 1rem;
+          margin-right: 0.3rem;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.nav-link {
+  i {
+    color: rgb(184, 184, 184);
+    margin-right: 0.3rem;
   }
 }

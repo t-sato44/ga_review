@@ -2,7 +2,10 @@
 
 @section('content')
 
-	<h1 class="h5">マイページ</h1>
+  <x-heading.h1
+    title="マイページ"
+    subTitle="My Page"
+  />
 
 	<div class="container">
 		<div class="row">
