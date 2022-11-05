@@ -66,9 +66,10 @@ class GameController extends Controller
       $game->players      = $request->input('players');
       $game->offical_url  = $request->input('offical_url');
       $game->agency       = $request->input('agency');
-      $game->is_new       = in_array(1, $request->input('categories'));
-      $game->is_attention = in_array(2, $request->input('categories'));
-      $game->is_recommend = in_array(3, $request->input('categories'));
+      $categories         = empty($request->input('categories')) ? [] : $request->input('categories');
+      $game->is_new       = in_array(1, $categories);
+      $game->is_attention = in_array(2, $categories);
+      $game->is_recommend = in_array(3, $categories);
       $game->save();
       $game->devices()->sync($request->devices);
       $game->genres()->sync($request->genres);
@@ -173,9 +174,10 @@ class GameController extends Controller
       $game->players      = $request->input('players');
       $game->offical_url  = $request->input('offical_url');
       $game->agency       = $request->input('agency');
-      $game->is_new       = in_array(1, $request->input('categories'));
-      $game->is_attention = in_array(2, $request->input('categories'));
-      $game->is_recommend = in_array(3, $request->input('categories'));
+      $categories         = empty($request->input('categories')) ? [] : $request->input('categories');
+      $game->is_new       = in_array(1, $categories);
+      $game->is_attention = in_array(2, $categories);
+      $game->is_recommend = in_array(3, $categories);
       $game->save();
       $game->devices()->sync($request->input('devices'));
       $game->genres()->sync($request->input('genres'));
