@@ -2,6 +2,10 @@
 
 <x-nav.head />
 
+@if (\Route::currentRouteName() == 'home')
+  <x-head.slide />    
+@endif
+
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-12 col-lg-8 col-xl-9 col-xxl-10">

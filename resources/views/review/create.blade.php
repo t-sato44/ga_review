@@ -2,7 +2,9 @@
 
 @section('content')
 
-	<h1>口コミ新規投稿</h1>
+	<x-heading.h1
+	  title="口コミ新規投稿"
+	/>
 
 	<form action="{{ route('review.store') }}" method="POST">
 		@csrf
