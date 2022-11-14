@@ -8,11 +8,8 @@
   </div>
 @endif
 
-<x-heading.h1
-  title="{{ $game->title }}"
-/>
-
-<div class="text-center">
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="text-primary">{{ $game->title }}</h1>
   <a class="btn btn-warning" href="{{ route('review.create', ['game_id' => $game->id]) }}">口コミ投稿する</a>
 </div>
 
@@ -54,12 +51,10 @@
             </div>
           </div>
         </div>
-        
         <div class="col-7">
           <div class="card">
             <div class="card-header">デバイス</div>
             <div class="card-body">
-              {{ $game->description }}
               @foreach ($devices as $device)
                 <div>{{ $device->name }}</div>
               @endforeach
