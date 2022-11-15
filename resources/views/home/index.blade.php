@@ -24,6 +24,16 @@
           <div>プレイ人数：{{ $v->players }}</div>
           <div>オフィシャルURL：{{ $v->offical_url }}</div>
           <div>運営：{{ $v->agency }}</div>
+          @if (count($v->devices) > 0)
+            <div>使用デバイス：
+              @foreach ($v->devices as $k2 => $device)
+                <span>{{ $device->name }}</span>
+                @if ($k2 != $v->devices->keys()->last())
+                  <span> / </span>
+                @endif
+              @endforeach
+            </div>
+          @endif
         </div>
       </div>
     </div>
@@ -52,6 +62,16 @@
             <div>プレイ人数：{{ $v->players }}</div>
             <div>オフィシャルURL：{{ $v->offical_url }}</div>
             <div>運営：{{ $v->agency }}</div>
+            @if (count($v->devices) > 0)
+              <div>使用デバイス：
+                @foreach ($v->devices as $k2 => $device)
+                  <span>{{ $device->name }}</span>
+                  @if ($k2 != $v->devices->keys()->last())
+                    <span> / </span>
+                  @endif
+                @endforeach
+              </div>
+            @endif
           </div>
         </div>
       </div>
@@ -81,6 +101,16 @@
           <div>プレイ人数：{{ $v->players }}</div>
           <div>オフィシャルURL：{{ $v->offical_url }}</div>
           <div>運営：{{ $v->agency }}</div>
+          @if (count($v->devices) > 0)
+            <div>使用デバイス：
+              @foreach ($v->devices as $k2 => $device)
+                <span>{{ $device->name }}</span>
+                @if ($k2 != $v->devices->keys()->last())
+                  <span> / </span>
+                @endif
+              @endforeach
+            </div>
+          @endif
         </div>
       </div>
     </div>
