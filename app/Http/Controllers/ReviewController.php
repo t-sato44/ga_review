@@ -19,7 +19,7 @@ class ReviewController extends Controller
     $this->device  = $device;
 	}
 
-	// Reviewページへの表示
+	// Reviewページ
 	public function index()
 	{
 		if(Gate::allows('admin')){
@@ -28,7 +28,7 @@ class ReviewController extends Controller
 		if(Gate::denies('read')){
 			// 閲覧者を除いて処理を実行します
 		}
-		$reviews = Review::all();
+		$reviews = $this->review->approval();
 		return view('review.index', compact('reviews'));
 	}
 
@@ -116,5 +116,25 @@ class ReviewController extends Controller
 	public function destroy($id)
 	{
 		//
+	}
+
+	// 承認待ちレビューページ
+	public function unapproved()
+	{
+		$reviews = $this->review->unapproved();
+		return view('review.unapproved', compact('reviews'));
+	}
+
+	// 承認変更アクション
+	public function approval_change(Request $request)
+	{
+		$approval = $request->input('approval');
+		$approval = $approval === 'true' ? 1 : 0;
+		$review_id  = $request->input('review');
+		$review = $this->review::find($review_id);
+		$review->is_approval = $approval;
+		$review->save();
+		header('Content-type: application/json');
+    echo json_encode($approval);
 	}
 }

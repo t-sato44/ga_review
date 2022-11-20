@@ -13,37 +13,36 @@
             <i class="bi bi-award-fill"></i>TOP
           </a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdownReview" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-pencil"></i>レビュー
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownReview">
-            <li>
-              <a class="dropdown-item" href="{{ route('review.index') }}">
-                レビュー一覧
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdownGame" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-controller"></i>タイトル
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownGame">
-            <li><a class="dropdown-item" href="{{ route('game.index') }}">タイトル一覧</a></li>
-            <li><a class="dropdown-item" href="{{ route('game.create') }}">タイトル登録</a></li>
-          </ul>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('register') }}">
-            <i class="bi bi-receipt"></i>新規会員登録
+          <a class="nav-link" href="{{ route('game.index') }}">
+            <i class="bi bi-bricks"></i>タイトル
           </a>
         </li>
+        @if(!Auth::check())
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">
+              <i class="bi bi-receipt"></i>新規会員登録
+            </a>
+          </li>
+        @endif
         <li class="nav-item">
           <a class="nav-link" href="{{ route('mypage') }}">
             <i class="bi bi-tag"></i>マイページ
           </a>
         </li>
+        @can('admin')
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownGame" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-controller"></i>管理ページ
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownGame">
+              <li><a class="dropdown-item" href="{{ route('admin') }}">TOP</a></li>
+              <li><a class="dropdown-item" href="{{ route('game.create') }}">タイトル登録</a></li>
+              <li><a class="dropdown-item" href="{{ route('review.index') }}">承認レビュー</a></li>
+              <li><a class="dropdown-item" href="{{ route('review.unapproved') }}">未承認レビュー</a></li>
+            </ul>
+          </li>
+        @endcan
       </ul>
       <form method="GET" action="#" class="d-flex">
         <input

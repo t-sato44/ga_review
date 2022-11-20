@@ -4,6 +4,38 @@
 
 <div class="container">
 
+  <div class="d-flex justify-content-end">
+    <label class="form-check-label me-2 fw-bold" for="approval_switch">承認</label>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="approval_switch"
+        @if ($review->is_approval) checked @endif
+      >
+    </div>
+  </div>
+
+  <script>
+    const approval_switch = document.getElementById('approval_switch');
+    approval_switch.addEventListener('click', (e) => {
+      const postData = new FormData;
+      postData.set('review', {{ $review->id }});
+      postData.set('approval', e.target.checked);
+      fetch('{{ route("review.approval_change") }}', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}',
+          'Accept': 'application/json'
+        },
+        body: postData
+      })
+      .then(res => res.json())
+      .then(data => { console.log(data); })
+      .catch(error => { console.log(error); });
+    });
+  </script>
+
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link active" data-bs-toggle="tab" aria-current="page" href="#info">商品情報</a>

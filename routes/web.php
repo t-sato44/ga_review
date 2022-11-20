@@ -3,29 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 // トップページ
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 // レビューページ
+Route::get('/review/unapproved', [Controllers\ReviewController::class, 'unapproved'])->name('review.unapproved');
+Route::post('/review/approval_change', [Controllers\ReviewController::class, 'approval_change'])->name('review.approval_change');
 Route::resource('review', Controllers\ReviewController::class);
-// Route::get('/review', [Controllers\ReviewController::class, 'index'])->name('review.index');
-// Route::get('/review/create', [Controllers\ReviewController::class, 'create'])->name('review.create');
-// Route::get('/review/{id}', [Controllers\ReviewController::class, 'show'])->name('review.show');
 
 // ゲームタイトルページ
 Route::resource('game', Controllers\GameController::class);
-//Route::get('/game', [Controllers\GameController::class, 'index'])->name('game.index');
-
 
 // 検索ページ
 Route::resource('search', Controllers\SearchController::class);

@@ -23,4 +23,14 @@ class Review extends Model
 	{
 		return $this->belongsToMany(Device::class);
 	}
+
+	public function approval()
+	{
+		return $this::where('is_approval', true)->get();
+	}
+
+	public function unapproved()
+	{
+		return $this::where('is_approval', false)->get();
+	}
 }
