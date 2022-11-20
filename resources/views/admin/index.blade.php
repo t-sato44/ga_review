@@ -14,6 +14,7 @@
         mainTitle="承認レビュー"
         subTitle="Approval Review"
         url="{{ route('review.index') }}"
+        icon="bi bi-chat-left-text-fill"
       />
     </div>
     <div class="col">
@@ -21,6 +22,7 @@
         mainTitle="未承認レビュー"
         subTitle="UnApproval Review"
         url="{{ route('review.unapproved') }}"
+        icon="bi bi-chat-left-text"
       />
     </div>
     <div class="col">
@@ -28,6 +30,7 @@
         mainTitle="ゲームタイトル登録"
         subTitle="Game Create"
         url="{{ route('game.create') }}"
+        icon="bi bi-receipt"
       />
     </div>
   </div>

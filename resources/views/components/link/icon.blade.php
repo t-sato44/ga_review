@@ -1,7 +1,7 @@
 <a href="{{ $url }}" class="link-normal">
   <div class="icon-menu">
     <div class="icon">
-      <i class="bi bi-receipt"></i>
+      <i class="{{ $icon }}"></i>
     </div>
     <div class="title">
       <div>
