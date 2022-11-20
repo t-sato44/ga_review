@@ -1,4 +1,4 @@
-<footer class="mt-5 bg-info py-5">
+<footer class="mt-5 bg-warning fw-bold py-5">
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
