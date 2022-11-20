@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReviewCreateMail;
 use App\Models\Review;
 use App\Models\Game;
 use App\Models\Device;
@@ -9,13 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class ReviewController extends Controller
 {
 	public function __construct(Review $review, Game $game, Device $device)
 	{
-		$this->review = $review;
-		$this->game = $game;
+		$this->review  = $review;
+		$this->game    = $game;
     $this->device  = $device;
 	}
 
@@ -55,19 +57,23 @@ class ReviewController extends Controller
 	//レビューページで入力されたデータを保存
 	public function store(Request $request)
 	{
-		$review          = new Review();
-		$review->user_id = Auth::user()->id;
-		$review->game_id = $request->input('game');
-		$review->graphic = $request->input('graphic');
-		$review->volume  = $request->input('volume');
-		$review->sound   = $request->input('sound');
-		$review->story   = $request->input('story');
-		$review->comfort = $request->input('comfort');
-		$review->score   = $request->input('score');
-		$review->playtime= $request->input('playtime');
-		$review->review  = $request->input('review');
+		$review           = new Review();
+		$review->user_id  = Auth::user()->id;
+		$review->game_id  = $request->input('game');
+		$review->graphic  = $request->input('graphic');
+		$review->volume   = $request->input('volume');
+		$review->sound    = $request->input('sound');
+		$review->story    = $request->input('story');
+		$review->comfort  = $request->input('comfort');
+		$review->score    = $request->input('score');
+		$review->playtime = $request->input('playtime');
+		$review->review   = $request->input('review');
 		$review->save();
     $review->device()->sync($request->devices);
+		$user_name  = Auth::user()->name;
+		$game_title = $this->game->find($review->game_id)->title;
+		Mail::to(env('MAIL_ADMIN_TO_ADDRESS', 'undefind@mail.com'))
+			->send(new ReviewCreateMail($user_name, $game_title));
 		return redirect()->route('review.show', $review->id);
 	}
 
