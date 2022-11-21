@@ -15,7 +15,10 @@
 	</div>
 @endif
 
-<h1>ゲームタイトル情報登録</h1>
+<x-heading.h1
+  title="ゲームタイトル登録"
+  subTitle="Game Create"
+/>
 
 <form action="{{ route('game.store') }}" method="POST" enctype="multipart/form-data">
 	@csrf

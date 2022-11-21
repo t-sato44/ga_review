@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReviewCreateMail;
 use App\Models\Review;
 use App\Models\Game;
 use App\Models\Device;
@@ -9,17 +10,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class ReviewController extends Controller
 {
 	public function __construct(Review $review, Game $game, Device $device)
 	{
-		$this->review = $review;
-		$this->game = $game;
+		$this->review  = $review;
+		$this->game    = $game;
     $this->device  = $device;
 	}
 
-	// Reviewページへの表示
+	// Reviewページ
 	public function index()
 	{
 		if(Gate::allows('admin')){
@@ -28,7 +30,7 @@ class ReviewController extends Controller
 		if(Gate::denies('read')){
 			// 閲覧者を除いて処理を実行します
 		}
-		$reviews = Review::all();
+		$reviews = $this->review->approval();
 		return view('review.index', compact('reviews'));
 	}
 
@@ -55,19 +57,23 @@ class ReviewController extends Controller
 	//レビューページで入力されたデータを保存
 	public function store(Request $request)
 	{
-		$review          = new Review();
-		$review->user_id = Auth::user()->id;
-		$review->game_id = $request->input('game');
-		$review->graphic = $request->input('graphic');
-		$review->volume  = $request->input('volume');
-		$review->sound   = $request->input('sound');
-		$review->story   = $request->input('story');
-		$review->comfort = $request->input('comfort');
-		$review->score   = $request->input('score');
-		$review->playtime= $request->input('playtime');
-		$review->review  = $request->input('review');
+		$review           = new Review();
+		$review->user_id  = Auth::user()->id;
+		$review->game_id  = $request->input('game');
+		$review->graphic  = $request->input('graphic');
+		$review->volume   = $request->input('volume');
+		$review->sound    = $request->input('sound');
+		$review->story    = $request->input('story');
+		$review->comfort  = $request->input('comfort');
+		$review->score    = $request->input('score');
+		$review->playtime = $request->input('playtime');
+		$review->review   = $request->input('review');
 		$review->save();
     $review->device()->sync($request->devices);
+		$user_name  = Auth::user()->name;
+		$game_title = $this->game->find($review->game_id)->title;
+		Mail::to(env('MAIL_ADMIN_TO_ADDRESS', 'undefind@mail.com'))
+			->send(new ReviewCreateMail($user_name, $game_title));
 		return redirect()->route('review.show', $review->id);
 	}
 
@@ -116,5 +122,25 @@ class ReviewController extends Controller
 	public function destroy($id)
 	{
 		//
+	}
+
+	// 承認待ちレビューページ
+	public function unapproved()
+	{
+		$reviews = $this->review->unapproved();
+		return view('review.unapproved', compact('reviews'));
+	}
+
+	// 承認変更アクション
+	public function approval_change(Request $request)
+	{
+		$approval = $request->input('approval');
+		$approval = $approval === 'true' ? 1 : 0;
+		$review_id  = $request->input('review');
+		$review = $this->review::find($review_id);
+		$review->is_approval = $approval;
+		$review->save();
+		header('Content-type: application/json');
+    echo json_encode($approval);
 	}
 }

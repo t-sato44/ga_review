@@ -3,8 +3,8 @@
 @section('content')
 
 <x-heading.h1
-  title="承認レビュー"
-  subTitle="Review List"
+  title="未承認レビュー"
+  subTitle="UnApproval Review"
 />
 
 <div class="container">
