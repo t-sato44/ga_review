@@ -19,21 +19,31 @@
           <img src="http://placehold.jp/200x250.png" alt="">
         </div>
         <div class="card-text">
-          <div>説明：{{ $v->description }}</div>
-          <div>リリース日：{{ $v->release_date }}</div>
-          <div>プレイ人数：{{ $v->players }}</div>
-          <div>オフィシャルURL：{{ $v->offical_url }}</div>
-          <div>運営：{{ $v->agency }}</div>
           @if (count($v->devices) > 0)
-            <div>使用デバイス：
+            <div>
               @foreach ($v->devices as $k2 => $device)
-                <span>{{ $device->name }}</span>
+                <span>＜{{ $device->name }}＞</span>
                 @if ($k2 != $v->devices->keys()->last())
-                  <span> / </span>
+                  {{-- <span>  </span> --}}
                 @endif
               @endforeach
             </div>
           @endif
+          <div>{{ $v->description }}</div>
+          <div>リリース日：{{ $v->release_date }}</div>
+          @if (count($v->genres) > 0)
+          <div>ジャンル：
+            @foreach ($v->genres as $k3 => $genre)
+              <span>{{ $genre->name }}</span>
+              @if ($k2 != $v->genres->keys()->last())
+                <span> 、 </span>
+              @endif
+            @endforeach
+          </div>
+        @endif
+          <div>プレイ人数：{{ $v->players }}人</div>
+          <div>オフィシャルURL：{{ $v->offical_url }}</div>
+          <div>発売元：{{ $v->agency }}</div>
         </div>
       </div>
     </div>
@@ -57,21 +67,31 @@
             <img src="http://placehold.jp/200x250.png" alt="">
           </div>
           <div class="card-text">
-            <div>説明：{{ $v->description }}</div>
-            <div>リリース日：{{ $v->release_date }}</div>
-            <div>プレイ人数：{{ $v->players }}</div>
-            <div>オフィシャルURL：{{ $v->offical_url }}</div>
-            <div>運営：{{ $v->agency }}</div>
             @if (count($v->devices) > 0)
-              <div>使用デバイス：
+              <div>
                 @foreach ($v->devices as $k2 => $device)
-                  <span>{{ $device->name }}</span>
+                  <span>＜{{ $device->name }}＞</span>
                   @if ($k2 != $v->devices->keys()->last())
-                    <span> / </span>
+                    {{-- <span> / </span> --}}
                   @endif
                 @endforeach
               </div>
             @endif
+            <div>{{ $v->description }}</div>
+            <div>リリース日：{{ $v->release_date }}</div>
+            @if (count($v->genres) > 0)
+              <div>ジャンル：
+                @foreach ($v->genres as $k3 => $genre)
+                  <span>{{ $genre->name }}</span>
+                  @if ($k3 != $v->genres->keys()->last())
+                    <span> 、 </span>
+                  @endif
+                @endforeach
+              </div>
+            @endif
+            <div>プレイ人数：{{ $v->players }}人</div>
+            <div>オフィシャルURL：{{ $v->offical_url }}</div>
+            <div>発売元：{{ $v->agency }}</div>
           </div>
         </div>
       </div>
@@ -96,21 +116,31 @@
           <img src="http://placehold.jp/200x250.png" alt="">
         </div>
         <div class="card-text">
-          <div>説明：{{ $v->description }}</div>
-          <div>リリース日：{{ $v->release_date }}</div>
-          <div>プレイ人数：{{ $v->players }}</div>
-          <div>オフィシャルURL：{{ $v->offical_url }}</div>
-          <div>運営：{{ $v->agency }}</div>
           @if (count($v->devices) > 0)
-            <div>使用デバイス：
+            <div>
               @foreach ($v->devices as $k2 => $device)
-                <span>{{ $device->name }}</span>
+                <span>＜{{ $device->name }}＞</span>
                 @if ($k2 != $v->devices->keys()->last())
-                  <span> / </span>
+                  {{-- <span> / </span> --}}
                 @endif
               @endforeach
             </div>
           @endif
+          <div>説明：{{ $v->description }}</div>
+          <div>リリース日：{{ $v->release_date }}</div>
+          @if (count($v->genres) > 0)
+            <div>ジャンル：
+              @foreach ($v->genres as $k3 => $genre)
+                <span>{{ $genre->name }}</span>
+                @if ($k3 != $v->genres->keys()->last())
+                  <span> 、 </span>
+                @endif
+              @endforeach
+            </div>
+          @endif
+          <div>プレイ人数：{{ $v->players }}人</div>
+          <div>オフィシャルURL：{{ $v->offical_url }}</div>
+          <div>発売元：{{ $v->agency }}</div>
         </div>
       </div>
     </div>
